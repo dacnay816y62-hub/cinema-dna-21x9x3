@@ -1,8 +1,8 @@
 # Cinema DNA 21:9 x 3
 
-**Version:** 1.2.2
+**Version:** 3.0.0
 
-把人物、空间、建筑、神话、科幻、运动、动画题材或一句简单剧情，转译成更像真实电影镜头的 **21:9 三联叙事画面**，并可在用户明确要求时继续生成 **片名、带文字主题海报和完整视觉体系封面**。
+把人物、空间、建筑、神话、科幻、运动、动画题材或一句简单剧情，转译成更像真实电影镜头的 **21:9 单帧、三联叙事或九镜故事板**，并可在用户明确要求时继续生成 **片名、带文字主题海报和完整视觉体系封面**。
 
 这个 skill 不是给图片套“电影感滤镜”。它关注的是：摄影机为什么在这里，观众先看见什么，人物被什么空间关系限制，色彩从哪里来，以及三张图之间的剪辑节奏是否真的成立。
 
@@ -36,7 +36,7 @@
 
 ## What It Does
 
-默认输出一组 **3 张独立 21:9 镜头**，再纵向拼接成一张三联图。
+默认输出一组 **3 张独立 21:9 镜头**，再纵向拼接成一张三联图。用户要求“9 张讲故事”“九镜”或“九宫格”时，切换到 Nine-Shot Story：先建立连续性圣经与九镜账本，分三批生成 9 张独立镜头，再用脚本拼成 3×3 九宫格；任何失败只补跑对应镜头。
 
 片名与主题海报不是默认流程。只有当用户明确提出“片名、命名、海报、封面、视觉体系、发布主图”等需求时，它才会追加一个补充阶段：
 
@@ -308,6 +308,7 @@ Optional: title candidates + theme poster + visual-system cover
 
 - `SKILL.md` - main skill instructions used by Codex
 - `references/` - extended cinema grammar and anti-AI film-frame patches
+- `scripts/` - deterministic nine-shot contact-sheet composition
 - `agents/` - Codex UI metadata
 - `examples/` - compressed README example images
 

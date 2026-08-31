@@ -1,4 +1,4 @@
 interface:
-  display_name: "Cinema DNA 21:9 x 3"
-  short_description: "Create cinematic 21:9 triptychs with optional title and poster-cover systems"
-  default_prompt: "Turn this subject, story, place, product, person, or reference image into three connected 21:9 cinematic film-still prompts. Only when the user explicitly asks for naming, a poster, a cover, or a visual system, add the optional title, theme-poster, and cover-system stage."
+  display_name: "Cinema DNA 3.0 — 21:9 Storyboard"
+  short_description: "Create live-action 21:9 single, triptych, or nine-shot film stories"
+  default_prompt: "Turn this subject, story, place, product, person, or reference image into a live-action cinematic 21:9 single frame, triptych, or nine-shot story. Generate every shot independently, preserve continuity, and compose externally. Add naming, poster, cover, or visual-system work only when explicitly requested."
