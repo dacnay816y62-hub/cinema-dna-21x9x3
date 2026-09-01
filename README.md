@@ -1,6 +1,6 @@
 # Cinema DNA 21:9 x 3
 
-**Version:** 3.0.0
+**Version:** 3.0.1
 
 把人物、空间、建筑、神话、科幻、运动、动画题材或一句简单剧情，转译成更像真实电影镜头的 **21:9 单帧、三联叙事或九镜故事板**，并可在用户明确要求时继续生成 **片名、带文字主题海报和完整视觉体系封面**。
 
@@ -146,69 +146,31 @@
 
 ## Example Gallery
 
-### Selected Favorites
+这里只保留六张轻量 JPG，分别覆盖室内关系、体育压力、户外动作、东方仪式、科幻制度空间和离别余韵。更多历史案例保留在旧版 Release 中，不随 Skill 安装包分发。
 
-这些示例来自多轮测试后的精选结果。它们更强调三联节奏、构图流量、群体叙事、运动压力和真实场景里的综合色，而不是单张漂亮截图。
-
-![Mexico rodeo family rope triptych](examples/mexico-rodeo-family-rope-triptych.jpg)
-
-![Seventies TV dance marathon triptych](examples/seventies-tv-dance-marathon-triptych.jpg)
-
-![Tropical court greenhouse triptych](examples/tropical-court-greenhouse-triptych.jpg)
-
-![American football optical pressure triptych](examples/american-football-optical-pressure-triptych.jpg)
-
-![Laundromat note triptych](examples/laundromat-note-triptych.jpg)
-
-![Rain courtyard ledger triptych](examples/rain-courtyard-ledger-triptych.jpg)
+### Interior Relationship
 
 ![Apartment family table triptych](examples/apartment-family-table-triptych.jpg)
 
-![Train window departure triptych](examples/train-window-departure-triptych.jpg)
+### Sports Pressure
 
-![Monastic observatory window triptych](examples/monastic-observatory-window-triptych.jpg)
+![American football optical pressure triptych](examples/american-football-optical-pressure-triptych.jpg)
 
-### Anti-template Rhythm Tests
+### Outdoor Action
 
-这组用于修正“第三张总是物件残留”的问题。收尾改为人物、群体、身体压力和公共现场继续运行。
+![Mexico rodeo family rope triptych](examples/mexico-rodeo-family-rope-triptych.jpg)
 
-![Non-residue rhythm overview](examples/non-residue-rhythm-overview.jpg)
+### Eastern Ritual
 
-### Sci-fi Ice Ring Mine City
+![Rain courtyard ledger triptych](examples/rain-courtyard-ledger-triptych.jpg)
 
-科幻星球不靠霓虹和巨构奇观，而是用矿车时刻表、成人礼队伍和冰环环境制造制度压力。
+### Grounded Science Fiction
 
 ![Sci-fi ice ring mine city triptych](examples/scifi-ice-ring-mine-city-triptych.jpg)
 
-### Original Anthropomorphic Animal Theater
+### Departure And Aftertaste
 
-拟人动物可以有 IP 感、表情和服装，但避开现成动物都市设定。这里转成河港小剧场和手作舞台逻辑。
-
-![Anthro harbor theater triptych](examples/anthro-harbor-theater-triptych.jpg)
-
-### Sci-fi Underwater Football
-
-运动题材不固定为“背影、主观、脸部特写”。水下穹顶足球用球、阀门、队友人墙和规则故障形成动作节奏。
-
-![Sci-fi underwater football triptych](examples/scifi-underwater-football-triptych.jpg)
-
-### Bagua Sea Platform
-
-东方玄学题材不使用发光法术和游戏化对决，而用潮水、站位、宗派距离和八卦地面关系表达权力变化。
-
-![Bagua sea platform triptych](examples/bagua-sea-platform-triptych.jpg)
-
-### Earlier Favorites
-
-![Hotel pink ritual triptych](examples/hotel-pink-ritual-triptych.jpg)
-
-![Army fisheye first-person triptych](examples/army-fisheye-first-person-triptych.png)
-
-![Courthouse witness triptych](examples/courthouse-witness-triptych.png)
-
-![Green water memory triptych](examples/green-water-memory-triptych.png)
-
-![Journey West original epic triptych](examples/journey-west-original-epic-triptych.png)
+![Train window departure triptych](examples/train-window-departure-triptych.jpg)
 
 ## Typical Requests
 

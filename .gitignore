@@ -5,3 +5,6 @@ Thumbs.db
 node_modules/
 .env
 .env.*
+
+# Keep the installable skill package lightweight. Use compressed JPG/WebP for curated examples.
+examples/*.png
