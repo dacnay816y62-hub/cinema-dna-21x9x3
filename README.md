@@ -224,6 +224,6 @@ Start with [SKILL.md](SKILL.md), the [nine-shot protocol](references/nine-shot-s
 
 **让想象先被看见。** 将视觉判断与创作流程整理成可以继续使用的方法。
 
-**[浏览全部视觉 Skills](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/blob/main/docs/FANTASY-COLLECTION.md)** · [Fantasy Movie Poster](https://github.com/dacnay816y62-hub/fantasy-movie-poster-skill) · [Character Casting Studio](https://github.com/dacnay816y62-hub/character-casting-studio-skill)
+**[浏览全部视觉 Skills](https://github.com/dacnay816y62-hub?tab=repositories)** · [Fantasy Movie Poster](https://github.com/dacnay816y62-hub/fantasy-movie-poster-skill) · [Character Casting Studio](https://github.com/dacnay816y62-hub/character-casting-studio-skill)
 
 本地技能目录与加载方式参见 [OpenAI 官方 Skills 文档](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)。
