@@ -36,9 +36,11 @@ description: 将人物、空间、产品、建筑、历史、神话、科幻、�
 
 用户只要图像时，直接执行生成与拼接，不先输出长篇理论。
 
+用户只要镜头方案或提示词时只交付文字，不调用图像生成。没有可用图像后端时说明限制，交付可执行方案与提示词，不能把未生成的图片写成已经完成。
+
 ## 2. 工具与后端规则
 
-- 遵守用户指定的图像后端。用户指定官方内置 Image Gen 时，使用官方内置图像生成工具，不得静默切换到马良或其他 API。
+- 遵守用户指定的图像后端。用户指定官方内置 Image Gen 时，使用官方内置图像生成工具，不得静默切换到其他服务或 API。
 - 每个镜头必须独立生成。禁止要求图像模型在同一画布中画三联、九宫格、分镜表或接触表。
 - 生成完成后用外部脚本拼版；拼版不改变镜头内容。
 - 默认保留每张独立源图，便于只替换失败镜头。
@@ -124,6 +126,8 @@ description: 将人物、空间、产品、建筑、历史、神话、科幻、�
 
 生成前建立 Shot Ledger。每镜必须具有独立叙事功能。
 
+用户明确要求“不要特写”“以场景和动作关系为主”时，将它写入镜头限制，优先于方法库中的默认景别。不要为了视觉精致插入无叙事作用的眼睛、手或物件特写；以能读清人物行动和空间关系的景别完成信息交付。
+
     | # | 剧情功能 | 主要动作 | 观众位置 | 景别/焦段 | 构图压力 | 关键线索 | 与前镜变化 |
 
 至少变化以下项目中的四项：
@@ -203,10 +207,12 @@ description: 将人物、空间、产品、建筑、历史、神话、科幻、�
 
 九镜生成完成后运行：
 
-    & scripts/compose-nine-shot-storyboard.ps1
-      -Sources @('shot01.png','shot02.png','shot03.png','shot04.png','shot05.png','shot06.png','shot07.png','shot08.png','shot09.png')
-      -OutputDir 'D:\\Codex_Outputs\\images\\story-name'
-      -Prefix 'story-name'
+```powershell
+$sources = @('shot01.png','shot02.png','shot03.png','shot04.png','shot05.png','shot06.png','shot07.png','shot08.png','shot09.png')
+& ./scripts/compose-nine-shot-storyboard.ps1 -Sources $sources -OutputDir './output/story-name' -Prefix 'story-name'
+```
+
+以上示例从技能根目录执行；实际源图路径按当前任务替换，不依赖某台电脑的固定盘符。附带脚本使用 PowerShell 与 `System.Drawing`，优先在 Windows 执行；其他环境可使用等效工具完成同样拼版，不更换成功源图。
 
 脚本必须：
 
@@ -316,6 +322,8 @@ description: 将人物、空间、产品、建筑、历史、神话、科幻、�
 用户只要图像时，交付图像和必要文件链接即可，不重复输出所有提示词。
 
 ## 12. 按需读取
+
+当前用户要求与本文件的模式、工具和连续性规则优先。扩展方法库保留了历史模板，按题材取用；不要用其中旧的固定三镜职责覆盖当前镜头设计。
 
 - 九镜故事任务：必须读取 [references/nine-shot-story-protocol-v3.md](references/nine-shot-story-protocol-v3.md)。
 - 输出仍显得油腻、过度精致、过脏或镜头节奏常规时：读取 [references/cinema-dna-v4-anti-ai.md](references/cinema-dna-v4-anti-ai.md)。

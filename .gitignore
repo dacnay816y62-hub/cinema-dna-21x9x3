@@ -1,4 +1,4 @@
-﻿.DS_Store
+.DS_Store
 Thumbs.db
 *.tmp
 *.log
@@ -8,3 +8,11 @@ node_modules/
 
 # Keep the installable skill package lightweight. Use compressed JPG/WebP for curated examples.
 examples/*.png
+
+# Local generated work is not part of the installable skill.
+/output/
+/outputs/
+/tmp/
+/upload/
+__pycache__/
+*.pyc

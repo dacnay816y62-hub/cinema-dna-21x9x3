@@ -1,5 +1,7 @@
 # CINEMA DNA Full Spec
 
+这是保留历史经验的单帧与三联方法库，不是另一份默认工作流。与 [SKILL.md](../SKILL.md) 冲突时，以核心规则和用户当前要求为准；下文固定镜头职责、焦段与结尾形式按题材取用，不作为全部任务的强制模板。
+
 ## PATCH v3 | Triptych Narrative And Film Realism
 
 Prime rule: do not generate "cinematic-looking pictures"; generate three frames that feel cut from the same real film sequence, with one world, clear shot functions, real camera imaging, and a readable micro-story.
@@ -363,7 +365,7 @@ This reference preserves the original v2 source instructions. Read it when the t
 
 ---
 
-# 6. 默认视觉偏好（根据用户长期审美设定）
+# 6. 默认视觉方向（可按当前任务调整）
 
 ## 6.1 胶片电影机质感
 默认优先采用：
