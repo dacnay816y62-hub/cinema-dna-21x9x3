@@ -142,14 +142,15 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 **Windows PowerShell：**
 
 ```powershell
-$skillRoot = if ($env:CODEX_HOME) { Join-Path $env:CODEX_HOME 'skills' } else { Join-Path $env:USERPROFILE '.codex\skills' }
+$skillRoot = Join-Path $env:USERPROFILE '.agents\skills'
+New-Item -ItemType Directory -Force -Path $skillRoot | Out-Null
 git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git (Join-Path $skillRoot 'cinema-dna-21x9x3')
 ```
 
 **macOS / Linux：**
 
 ```bash
-git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "${CODEX_HOME:-$HOME/.codex}/skills/cinema-dna-21x9x3"
+git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$HOME/.agents/skills/cinema-dna-21x9x3"
 ```
 
 目标文件夹已存在时，先确认它是否属于这个仓库，避免覆盖自己的修改。安装后在支持技能调用的对话中使用 **`$cinema-dna-21x9x3`**。
@@ -218,3 +219,11 @@ The Skill provides shot design, prompts and orchestration. Image generation depe
 The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. The supplied nine-shot compositor uses PowerShell and `System.Drawing`; Windows is the recommended execution environment.
 
 Start with [SKILL.md](SKILL.md), the [nine-shot protocol](references/nine-shot-story-protocol-v3.md), or the [current download](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/archive/refs/heads/main.zip).
+
+---
+
+**让想象先被看见。** 将视觉判断与创作流程整理成可以继续使用的方法。
+
+**[浏览全部视觉 Skills](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/blob/main/docs/FANTASY-COLLECTION.md)** · [Fantasy Movie Poster](https://github.com/dacnay816y62-hub/fantasy-movie-poster-skill) · [Character Casting Studio](https://github.com/dacnay816y62-hub/character-casting-studio-skill)
+
+本地技能目录与加载方式参见 [OpenAI 官方 Skills 文档](https://learn.chatgpt.com/docs/build-skills#where-codex-loads-local-skills)。
