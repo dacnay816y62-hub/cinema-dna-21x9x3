@@ -115,7 +115,8 @@ def main():
     except (OSError, ValueError) as exc:
         print(f'Error: {exc}', file=sys.stderr)
         return 1
-    print(json.dumps(result, ensure_ascii=False))
+    # ASCII-escaped JSON also works in legacy Windows console encodings.
+    print(json.dumps(result, ensure_ascii=True))
     return 0
 
 

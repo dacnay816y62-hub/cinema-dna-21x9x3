@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -89,6 +90,15 @@ class StoryboardTests(unittest.TestCase):
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('source image', result.stderr)
         self.assertEqual(collision.read_bytes(), before)
+
+    def test_legacy_console_encoding(self):
+        command = [sys.executable, str(SCRIPT), "--sources", *map(str, self.sources),
+                   "--output-dir", str(self.output), "--prefix", "test"]
+        result = subprocess.run(command, capture_output=True, text=True,
+                                env={**os.environ, "PYTHONIOENCODING": "ascii"})
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(json.loads(result.stdout)["ContactSheet"],
+                         str(self.output / "test_3x3_contact_sheet.png"))
 
     def test_help_and_missing_dependency(self):
         result = subprocess.run([sys.executable, '-S', str(SCRIPT), '--help'], capture_output=True, text=True)

@@ -3,12 +3,14 @@ on:
   pull_request:
     paths: ['scripts/**', 'tests/**', '.github/workflows/storyboard.yml']
   push:
+    branches: [main]
     paths: ['scripts/**', 'tests/**', '.github/workflows/storyboard.yml']
 permissions:
   contents: read
 jobs:
   pillow:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         python: ['3.10', '3.14']
