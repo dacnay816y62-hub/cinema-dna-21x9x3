@@ -22,6 +22,11 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# Windows PowerShell 5.1 has no $IsWindows; its PSEdition is Desktop.
+if ($PSVersionTable.PSEdition -eq 'Core' -and -not $IsWindows) {
+    throw 'This System.Drawing script supports Windows only. Use scripts/compose-nine-shot-storyboard.py with Python + Pillow on macOS/Linux; see README.md.'
+}
+
 if ($Sources.Count -ne 9) {
     throw "Exactly 9 source images are required; received $($Sources.Count)."
 }

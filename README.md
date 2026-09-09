@@ -158,8 +158,33 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 ### 运行环境
 
 - **生成图像：** 使用所在环境实际提供、或用户指定的图像工具；没有可用后端时交付镜头方案与提示词，并说明未生成图片。
-- **九镜拼版：** 仓库附带的脚本基于 PowerShell 与 `System.Drawing`，建议在 Windows 环境执行。其他环境可使用可用的等效拼版工具，保持顺序、比例和独立源图。
+- **九镜拼版：** 推荐使用 Python + Pillow 跨平台脚本，适用于 Windows、macOS、Linux；原 PowerShell 脚本依赖 `System.Drawing`，仅支持 Windows。详见下方命令。
 - **仅要提示词：** 不需要图像生成服务，明确说“只要提示词，不出图”即可。
+
+### 跨平台九镜拼版
+
+需要 Python 3.10+。从仓库根目录执行，建议使用独立虚拟环境：
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r scripts/requirements-storyboard.txt
+.venv/bin/python scripts/compose-nine-shot-storyboard.py --sources shot01.png shot02.png shot03.png shot04.png shot05.png shot06.png shot07.png shot08.png shot09.png --output-dir output/demo --prefix demo
+```
+
+Windows PowerShell 中创建环境使用 `py -3 -m venv .venv`，后两条命令中的 `.venv/bin/python` 改为 `.\venv\Scripts\python.exe`。
+
+按传入顺序生成 `demo_shot01.png`–`demo_shot09.png`、`demo_triptych_1.png`–`demo_triptych_3.png` 和 `demo_3x3_contact_sheet.png`。路径含空格时逐个加引号，不要依赖通配符排序。独立图保留完整像素尺寸（应用 EXIF 方向），真正编码为 PNG；输入文件不修改。透明区域在拼版中叠到黑底；拼版等比居中，不裁切、不拉伸，不添加文字。
+
+| 参数 | 默认值 | 范围 / 作用 |
+| --- | --- | --- |
+| `--cell-width` | 960 | 320–3840，总览单格宽度 |
+| `--cell-height` | 402 | 134–1607，总览单格高度 |
+| `--gap` | 8 | 0–64，黑色内间距，无外边框 |
+| `--overwrite` | 关闭 | 明确替换已有输出，仍禁止覆盖输入文件 |
+
+默认总览为 **2896 × 1222 px**，三联各为 **1920 × 2425 px**。与旧脚本一致，三联单格高度由 `round(2 × cell-width / 2.39)` 计算，不受 `--cell-height` 影响。布局兼容，不承诺不同图像库缩放结果逐像素一致。不足或超过九图、文件损坏、动画/多页图、非法参数会报错；全部源图成功解码后才开始写出。本工具不执行 ICC 色彩空间统一，建议输入统一为 sRGB。
+
+原 [PowerShell 脚本](scripts/compose-nine-shot-storyboard.ps1) 保留供 Windows 使用。PowerShell 7 跨平台不代表 `System.Drawing.Common` 跨平台；[.NET 7 已移除 Unix 支持开关](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/7.0/system-drawing)，不建议通过降级运行时绕过。
 
 ## 文件导航
 
@@ -169,7 +194,8 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 | [九镜故事协议](references/nine-shot-story-protocol-v3.md) | 故事推进、连续性、镜头变化与逐镜恢复 |
 | [摄影质感与节奏](references/cinema-dna-v4-anti-ai.md) | 光学质感、细节控制与三联节奏 |
 | [单帧与三联方法库](references/cinema-dna-full-spec.md) | 焦段、构图、光线与题材参考；冲突时以核心规则为准 |
-| [九镜拼版脚本](scripts/compose-nine-shot-storyboard.ps1) | 组织 9 张源图、3 张三联图和 1 张总览 |
+| [跨平台拼版脚本](scripts/compose-nine-shot-storyboard.py) | Python + Pillow，输出 9 张独立图、3 张三联图和 1 张总览 |
+| [Windows 拼版脚本](scripts/compose-nine-shot-storyboard.ps1) | 原 PowerShell / System.Drawing 实现，仅限 Windows |
 | [调用配置](agents/openai.yaml) | 技能展示名称与默认调用示例 |
 
 ## 常见问题
@@ -216,7 +242,7 @@ Choose one frame, a three-shot triptych, or a nine-shot story. Generate each sho
 
 The Skill provides shot design, prompts and orchestration. Image generation depends on the tools available in the host environment. Prompt-only requests stay text-only. Titles, posters and cover systems are added only when requested. This is a still-image and storyboard workflow, not a video generator.
 
-The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. The supplied nine-shot compositor uses PowerShell and `System.Drawing`; Windows is the recommended execution environment.
+The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. Use the Python 3.10+ / Pillow compositor on Windows, macOS or Linux. Install `scripts/requirements-storyboard.txt`, then run `scripts/compose-nine-shot-storyboard.py --help`. The original PowerShell / `System.Drawing` compositor is Windows-only.
 
 Start with [SKILL.md](SKILL.md), the [nine-shot protocol](references/nine-shot-story-protocol-v3.md), or the [current download](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/archive/refs/heads/main.zip).
 
