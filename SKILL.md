@@ -205,14 +205,23 @@ description: 将人物、空间、产品、建筑、历史、神话、科幻、�
 
 ## 8. 拼版
 
-九镜生成完成后运行：
+九镜生成完成后，优先使用跨平台 Python + Pillow 版本（Python 3.10+；安装与虚拟环境步骤见 [README.md](README.md)）：
+
+```bash
+python -m pip install -r scripts/requirements-storyboard.txt
+python scripts/compose-nine-shot-storyboard.py --sources shot01.png shot02.png shot03.png shot04.png shot05.png shot06.png shot07.png shot08.png shot09.png --output-dir ./output/story-name --prefix story-name
+```
+
+`python` 指已准备好依赖的 Python 解释器。明确按镜头顺序传入九个路径，空格路径分别加引号。默认拒绝覆盖输出；确认重拼同一任务时添加 `--overwrite`，输入文件始终受保护。输出命名与原脚本一致，独立图实际编码为 PNG，并应用 EXIF 方向；透明部分在拼版中落于黑底。
+
+Windows 也可继续使用原脚本：
 
 ```powershell
 $sources = @('shot01.png','shot02.png','shot03.png','shot04.png','shot05.png','shot06.png','shot07.png','shot08.png','shot09.png')
 & ./scripts/compose-nine-shot-storyboard.ps1 -Sources $sources -OutputDir './output/story-name' -Prefix 'story-name'
 ```
 
-以上示例从技能根目录执行；实际源图路径按当前任务替换，不依赖某台电脑的固定盘符。附带脚本使用 PowerShell 与 `System.Drawing`，优先在 Windows 执行；其他环境可使用等效工具完成同样拼版，不更换成功源图。
+以上示例从技能根目录执行；实际源图路径按当前任务替换，不依赖某台电脑的固定盘符。原 `.ps1` 脚本依赖 `System.Drawing`，仅支持 Windows；macOS/Linux 使用上述 `.py` 版本。若依赖不可用，明确说明并使用环境已有的等效拼版工具，不更换成功源图。
 
 脚本必须：
 
