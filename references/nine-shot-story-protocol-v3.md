@@ -17,7 +17,7 @@
 
     镜号 | 来源事实 | 本镜功能 | 镜前→主要事件→镜后 | 关键实体 | 机位/拍向/轴侧 | 可见证据 | 依赖镜
 
-当用户要视频提示词，另读 [video-motion-protocol.md](video-motion-protocol.md)，加入帧角色、摄影机/主体运动、焦点、尾态和剪辑衔接。不要用九次 still prompt 代替九段视频设计。
+当用户要视频提示词，另读 [video-motion-protocol.md](video-motion-protocol.md)，加入帧角色、摄影机/主体运动、焦点、尾态和剪辑衔接。九张静帧、九个剪辑镜头和生成片段数量分别记录；按剧情与可执行性决定逐镜输出或合理成组，不机械写九条 still prompt，也不强塞为一条长镜头。
 
 ## 3. 节奏与摄影机
 

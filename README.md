@@ -1,14 +1,14 @@
 # CINEMA DNA
 
-**版本：3.1.1**
+**版本：3.2.0**
 
-### 电影静帧 · 三联叙事 · 九镜故事板 · 逐镜视频提示词
+### 电影感分镜 × 专业视频提示词 × HTML 工作台
 
 **让每一个镜头都有理由，让画面之间发生故事。**
 
 从一句剧情、一个人物或一张参考图出发，建立摄影机的位置、人物与空间的关系、光线和色彩，再把它发展成可以连续观看的电影画面。
 
-**约 2.39:1 宽银幕 · 1 / 3 / 9 镜头 · 原画风保真 · 连续性控制 · 中文 TXT 交付**
+**约 2.39:1 宽银幕 · 1 / 3 / 9 镜头 · 原画风保真 · Seedance 2.5 提示词 · TXT + HTML 交付**
 
 [快速开始](#快速开始) · [三种输出模式](#三种输出模式) · [工作流程](#工作流程) · [示例图库](#示例图库) · [安装与调用](#安装与调用) · [English](#english-overview)
 
@@ -24,16 +24,18 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 
 **Skill 负责镜头与叙事设计、提示词和生成编排；图像模型负责逐镜生成；拼版工具负责组合已有镜头。** 它依赖所在环境实际提供的图像能力，本身不附带模型、API 密钥或视频生成服务。
 
-## 3.1.1 更新重点
+## 3.2 更新重点
 
-- **画风参考真正参与生成：** 要求保留原画风时，区分媒介、线条、色块和纹理，不再把“电影感”默认转成真人；“不能用原图作某一帧”不等于“不能输入原图作参考”。
-- **具象化角色可辨：** 区分意象、半成形和实体，分别核对角色身份与化形来源；用户要求角色出现时，不以模糊黑影代替。
-- **故事和空间按状态检查：** 身份与道具归属分开，已发生的交接不复位；单图背面和推测空间不冒充精确还原。
-- **逐镜视频动作：** 先辨认输入图是动作起始、中段还是结束，再写相机行为、主体动作、落点和切镜关系。未生成视频不宣称运镜已验证。
-- **直接使用的提示词：** 默认 TXT 与跟随用户语言的目录；中文项目提供逐镜短提示词和导演控制卡，可另附真实提交记录。
-- **轻量发布：** 保留六张压缩 JPG，不把新测试大图、用户原图和过程稿放进安装包。
+**这次，连“怎么拍”一起交付。** 3.2.0 将此前独立 V3 的视频提示词工作流合并回原 Skill，安装名和仓库地址不变，保留 3.1.1 的单帧、三联、九镜、画风与空间能力。
 
-本轮来自实际分镜修正经验与规则自检，不是通用成功率或视频生成性能保证。
+- **完整中文视频提示词：** 把参考职责、起始状态、主体动作、运镜路径、落幅、光影与声音写成可以独立复制的正文，不再只交一张导演表或几句术语。
+- **按剧情决定分段：** 分镜图数、剪辑镜头数和生成片段数分别规划；支持单镜连续、多镜剪辑、逐镜独立与已有视频延长，不把九张图机械绑成九次提交或一条长镜头。
+- **专业运镜与连续性：** 区分机位位移、摇摄、变焦和移焦；明确动作交接、停顿、切点、前后状态及参考不继承的内容。
+- **重点适配 Seedance 2.5：** 使用自然语言表达导演意图，网页与 API 分开核验；用户指定其他后端仍按实际入口适配。
+- **可复制 HTML 工作台：** 分镜、镜号、参考用途、完整提示词同页查看，附复制与 TXT 下载；脚本使用 Python 标准库，可离线打开，不自动生成或付费提交视频。
+- **轻量与可追溯：** 新增状态账本检查和工作台生成器，保留六张轻量 JPG；不上传用户大图、原视频、密钥、研究缓存或宣传图。
+
+这一版吸收了镜头语言、连续性规则及公开社区案例的写法研究，整理为可复用流程；不是重新训练基础模型。提示词结构检查、案例抽帧观察与实际视频验收分开记录，不以规则存在或文字更长证明成片更好。
 
 ## 三种输出模式
 
@@ -85,7 +87,7 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 参考只用于画风和人物身份，不要把原图裁切当某一帧。
 保留我已经认可的第一镜，补齐其余镜头，并检查角色与道具状态。
 用官方内置 Image Gen，不切换其他图像服务。
-交付中文文件夹、独立图、逐镜中文视频提示词和导演控制卡，提示词用 TXT，不要 MD。
+交付中文文件夹、独立图、完整中文视频提示词和可复制 HTML 工作台，提示词用 TXT，不要 MD。
 只做图片和提示词，不生成视频。
 ```
 
@@ -97,9 +99,28 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 其他镜头不重做，替换完成后重新拼版。
 ```
 
+### 已有分镜，直接组织视频提示词
+
+```text
+使用 $cinema-dna-21x9x3。
+根据上传的分镜和剧情，判断适合分成几段视频，不需要先让我选两段还是三段。
+以 Seedance 2.5 为主，每段给一条独立完整的中文提示词。
+写清参考图职责、动作起止、摄影机路径、切镜、光影与声音，保留原画风和人物关系。
+交付中文文件夹、TXT 和带复制按钮的 HTML 工作台。
+只做提示词与文件，不生成或购买视频。
+```
+
+### HTML 工作台怎么用
+
+打开 `分镜与提示词.html` → 查看本段分镜与参考用途 → 复制完整提示词 → 按上传清单绑定素材 → 在所选视频平台生成。
+
+页面不依赖 CDN，附 TXT 下载；本地浏览器限制剪贴板时会提供可手动选择的正文。工作台本身不是视频模型，也不包含自动付费提交。已有真实视频才显示播放器。
+
+维护者可用 `python scripts/build_prompt_html.py 任务目录/交付清单.json` 从已有分镜与 TXT 生成工作台；清单格式与路径规则见[交付规范](references/delivery-contract.md)。
+
 ## 工作流程
 
-**故事与参考 → 镜头设计 → 独立生成 → 连续性检查 → 外部拼版**
+**故事与参考 → 镜头设计 → 按需生成独立图 → 连续性检查 → 视频提示词编排 → TXT / HTML 交付**
 
 | 阶段 | 解决的问题 | 形成的依据 |
 | --- | --- | --- |
@@ -191,6 +212,7 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 
 - **生成图像：** 使用所在环境实际提供、或用户指定的图像工具；没有可用后端时交付镜头方案与提示词，并说明未生成图片。
 - **九镜拼版：** 仓库附带的脚本基于 PowerShell 与 `System.Drawing`，建议在 Windows 环境执行。其他环境可使用可用的等效拼版工具，保持顺序、比例和独立源图。
+- **HTML 与状态检查脚本：** Python 3.9+，仅使用标准库，无 API 密钥或第三方依赖；网页文件与关联素材应一起移动。
 - **仅要提示词：** 不需要图像生成服务，明确说“只要提示词，不出图”即可。
 
 ## 文件导航
@@ -202,8 +224,14 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 | [剧情与状态](references/story-state-continuity.md) | 事件还原、实体化角色、道具归属 |
 | [资产与空间](references/asset-space-protocol.md) | 轴线、脚点、比例与未知区域 |
 | [视频运镜协议](references/video-motion-protocol.md) | 输入帧角色、主体动作、相机路径与切镜 |
-| [视频提示词示例](references/video-prompt-examples.md) | 按需参考的短提示词，不是固定九镜模板 |
-| [交付规范](references/delivery-contract.md) | 中文目录、TXT 提示词与可复用文件包 |
+| [视频提示词示例](references/video-prompt-examples.md) | 按需参考的单镜表达片段，不能替代完整正文 |
+| [提示词写作方法](references/prompt-writing.md) | 完整正文、参考职责、动作与相机编排 |
+| [导演与连续性](references/director-workflow.md) | 空间、首尾状态、轴线与声音 |
+| [Seedance 2.5 入口](references/seedance-25-profile.md) | 按实际网页/API 核对能力，不虚构参数 |
+| [研究来源](references/research-notes.md) | 社区案例方法、来源及证据边界 |
+| [交付规范](references/delivery-contract.md) | 中文目录、完整 TXT 与可复制 HTML |
+| [HTML 生成器](scripts/build_prompt_html.py) | 将本地分镜与 TXT 组织成离线工作台 |
+| [状态检查器](scripts/check_plan.py) | 声明的时间、引用和状态链检查，不验证画面 |
 | [人工回归用例](tests/regression-cases.txt) | 更新后需检查的行为边界，不是已完成性能测试 |
 | [九镜故事协议](references/nine-shot-story-protocol-v3.md) | 故事推进、连续性、镜头变化与逐镜恢复 |
 | [摄影质感与节奏](references/cinema-dna-v4-anti-ai.md) | 光学质感、细节控制与三联节奏 |
@@ -227,7 +255,7 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 
 **它会生成视频吗？**
 
-可以按需编写每镜可复制的视频动作与运镜提示词，附输入帧角色、首尾状态和导演控制卡。实际视频仍需要用户明确要求与可用后端；没有生成时只标注“提示词已检查，运动未验证”。
+可以按剧情组织独立完整的视频提示词，重点适配 Seedance 2.5，附实际参考职责、相机路径、首尾状态、切点与声音。文件交付可提供 TXT 和可复制 HTML。实际视频仍需要用户明确要求与可用后端；没有生成时只标注“提示词已检查，运动未验证”。
 
 **画面太脏、太油或太像游戏怎么办？**
 
@@ -245,7 +273,7 @@ Skill 帮助组织视觉判断和模型工具。好的剧本与好的画面共�
 
 反馈可提交到 [Issues](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/issues)，附上题材、所用工具、出错镜号和希望保留的内容。公开示例请使用已获准分享的素材，并清理私人资料与图片元数据。
 
-当前仓库未附加许可证。核心规则为 3.1 系列，本次发行版为 [v3.1.1](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.1.1)；历史发行版仍保留，主分支文档可继续更新。
+当前仓库未附加许可证。本次发行版为 [v3.2.0](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.0)；历史发行版仍保留，主分支文档可继续更新。
 
 ## English overview
 
@@ -253,7 +281,7 @@ Skill 帮助组织视觉判断和模型工具。好的剧本与好的画面共�
 
 Choose one frame, a three-shot triptych, or a nine-shot story. Generate each shot independently, review character and spatial continuity, replace only failed shots, then compose the finished frames externally. The core workflow targets approximately 2.39:1 frames; the repository name uses 21:9 as its widescreen label.
 
-The Skill provides shot design, prompts and orchestration. Image generation depends on the tools available in the host environment. Prompt-only requests stay text-only. Titles, posters and cover systems are added only when requested. Version 3.1.1 also provides per-shot video motion prompts based on each input frame's actual action state. It preserves explicitly requested reference styles and recognizable manifested characters. Prompt files default to TXT with language-appropriate folders. Actual video generation requires a separate explicit request and a supported backend; ungenerated motion is not reported as verified.
+The Skill provides shot design, prompts and orchestration. Image generation depends on the tools available in the host environment. Prompt-only requests stay text-only. Titles, posters and cover systems are added only when requested. Version 3.2.0 merges the independent V3 workflow into the existing skill: complete video prompts, story-driven segment planning, explicit reference responsibilities, motivated camera paths, continuity and audio. Seedance 2.5 is the primary adaptation target, not a required paid backend. It preserves reference styles and recognizable manifested characters. File deliveries use TXT and an offline copy-ready HTML workspace with language-appropriate folders. Actual video generation requires a separate explicit request and a supported backend; ungenerated motion is not reported as verified.
 
 The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. The supplied nine-shot compositor uses PowerShell and `System.Drawing`; Windows is the recommended execution environment.
 
