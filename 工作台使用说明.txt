@@ -1,11 +1,11 @@
-FANTASY × CINEMA DNA 3.2.1
+FANTASY × 电影感 3.2.2
 分镜与视频提示词 HTML 工作台使用说明
 
 一、直接让 Codex 做，不需要自己写代码
 
 把下面这段话与自己的分镜图片、剧情一起发给 Codex：
 
-使用 cinema-dna-21x9x3 的分镜提示词工作台模板，把我的分镜图与完整视频提示词对应整理成 HTML。按剧情判断合理分段，写清段号、覆盖镜号、参考图职责、计划时长与片段模式。保留 FANTASY logo，生成中文文件夹、完整 TXT 和可离线打开、可复制提示词的 HTML。使用技能内 scripts/build_prompt_html.py 和 assets/prompt-workspace/template.html，不另外重写网页。只整理文件，不提交或购买视频；完成后实际检查复制、下载与图片加载。
+使用 cinema-dna-21x9x3 的中文固定提示词模板和分镜工作台，根据我的剧情与分镜合理分段。每段必须填完九个中文栏目，提供可直接复制的完整正文，不交空白模板，不让我拼接公共前缀。保留 FANTASY 原版标志，生成中文文件夹、完整文本和可离线打开的网页。使用技能自带脚本和网页模板，不另外重写。只整理文件，不提交或购买视频；完成后检查复制、下载与图片加载。
 
 如果还没有安装 Skill，可以先发：
 帮我从 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3 安装或更新电影感 Skill，并使用里面的 FANTASY 分镜提示词 HTML 工作台。
@@ -33,6 +33,13 @@ FANTASY × CINEMA DNA 3.2.1
 每个片段必须有唯一 id 和 prompt_file；images 可以是空数组。有真实视频文件时才填 video。
 把示例替换为自己的镜号、素材文件名、参考职责和完整正文，不能只改标题。
 
+3.2.2 起，正文默认固定为九栏：片段任务、素材绑定、场景与起始状态、分镜时间轴、摄影机与焦点、表演与物理反馈、光线与画风、声音与台词、结束状态与限制。
+九栏不规定九镜。正文全部中文，英文平台标签与原文件名写在正文外的上传清单中。
+默认交付填写完成的正文。空白模板在 assets/提示词模板/完整视频提示词模板.txt；另有单镜与多镜完整示例。
+工作台生成前自动检查缺栏、空栏、填空残留和英文字母；遇到错误先补齐正文，不能绕过。
+仅在用户明确要求整理旧稿或自定格式时，才在对应片段清单增加 "prompt_format": "自由格式"。旧清单未填该字段也按新版固定模板检查。
+这是文字结构检查，不证明剧情、轴线、台词或视频运动正确。
+
 在 Skill 文件夹中运行：
 python scripts/build_prompt_html.py "我的故事/交付清单.json"
 
@@ -49,6 +56,11 @@ python scripts/build_prompt_html.py "我的故事/交付清单.json" --output "�
 四、模板和 Logo 在哪里
 
 scripts/build_prompt_html.py：生成器，读取清单、分镜和 TXT。
+scripts/check_prompt_template.py：正文检查器，与生成器放在同一目录，不可遗漏。
+assets/提示词模板/完整视频提示词模板.txt：九栏编写模板，使用前填完并删除填空说明。
+references/中文固定模板规范.md：固定格式、来源依据与完成门槛。
+examples/中文提示词示例/檐下递灯.txt：填好的单镜正文。
+examples/工作台示例/完整视频提示词.txt：填好的多镜正文。
 assets/prompt-workspace/template.html：维护 HTML、样式和复制行为的模板源码。
 assets/fantasy-brand/fantasy-logo.png：品牌所有者提供的原始 Logo，不是字体重写或 AI 重绘。
 assets/fantasy-brand/brand-spec.md：品牌资产与显示规则。

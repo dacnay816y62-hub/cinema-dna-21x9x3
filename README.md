@@ -1,6 +1,6 @@
 # CINEMA DNA
 
-**版本：3.2.1**
+**版本：3.2.2**
 
 ### 电影感分镜 × 专业视频提示词 × HTML 工作台
 
@@ -10,7 +10,7 @@
 
 **约 2.39:1 宽银幕 · 1 / 3 / 9 镜头 · 原画风保真 · Seedance 2.5 提示词 · TXT + HTML 交付**
 
-[快速开始](#快速开始) · [三种输出模式](#三种输出模式) · [工作流程](#工作流程) · [示例图库](#示例图库) · [安装与调用](#安装与调用) · [English](#english-overview)
+[快速开始](#快速开始) · [固定中文提示词](#固定中文提示词) · [三种输出模式](#三种输出模式) · [工作流程](#工作流程) · [示例图库](#示例图库) · [安装与调用](#安装与调用)
 
 | 家庭餐桌 · 距离与视线 | 雨夜赛场 · 身体与压力 |
 | :---: | :---: |
@@ -25,6 +25,8 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 **Skill 负责镜头与叙事设计、提示词和生成编排；图像模型负责逐镜生成；拼版工具负责组合已有镜头。** 它依赖所在环境实际提供的图像能力，本身不附带模型、API 密钥或视频生成服务。
 
 ## 3.2 更新重点
+
+**3.2.2 中文正文固定：** 不仅有网页模板，也固定每段完整提示词的九个栏目。默认交付填好的中文正文，附单镜与多镜示例；工作台生成时检查缺栏、空栏、填空残留和英文字母。结合字节官方文档、Higgsfield 社区与用户提供的 LibTV 项目方法，分开记录来源与实际视频验收。
 
 **3.2.1 模板补全：** 工作台 HTML 模板与生成脚本一同提供，加入 FANTASY 原版 logo、可打开示例及中文使用说明。无需自己搭页面，下载解压后即可查看。
 
@@ -43,9 +45,9 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 
 | 模式 | 适合什么 | 交付结构 |
 | --- | --- | --- |
-| **单帧 / Single Frame** | 先确定一个视觉方向或关键瞬间 | 1 张独立宽银幕画面 |
-| **三联 / Triptych** | 一个事件中的三次信息变化 | 3 张独立镜头 + 1 张纵向三联图 |
-| **九镜 / Nine-Shot Story** | 展开连续动作、人物关系或一个完整短场景 | 9 张独立镜头 + 3 张三联图 + 1 张 3×3 总览 |
+| **单帧** | 先确定一个视觉方向或关键瞬间 | 1 张独立宽银幕画面 |
+| **三联** | 一个事件中的三次信息变化 | 3 张独立镜头 + 1 张纵向三联图 |
+| **九镜** | 展开连续动作、人物关系或一个完整短场景 | 9 张独立镜头 + 3 张三联图 + 1 张 3×3 总览 |
 
 未指定数量时默认三联；明确要求九镜或九宫格时使用九镜，不因为“导演感”或转视频就自动扩镜。你指定的数量和交付形式优先。
 
@@ -79,7 +81,7 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 ```text
 使用 $cinema-dna-21x9x3。
 设计一组雨中赛车的三联镜头，强调速度、视线阻挡和赛场压力。
-只给精简的中文镜头说明与英文提示词，不生成图片。
+只给精简的中文镜头说明与完整中文提示词，不生成图片。
 ```
 
 ### 保留原画风，并交付视频运镜提示词
@@ -130,6 +132,21 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 
 工作台示例复用仓库已有的三联图，正文为使用演示，不代表对应视频已经生成。生成器内嵌 logo，图片、TXT 和视频仍保持相对路径；分享时请发送完整任务目录。修改 TXT 后需要重建 HTML。
 
+## 固定中文提示词
+
+**每段默认给一份填好的正文，不让使用者自己拼接。** 固定栏目为：
+
+片段任务 → 素材绑定 → 场景与起始状态 → 分镜时间轴 → 摄影机与焦点 → 表演与物理反馈 → 光线与画风 → 声音与台词 → 结束状态与限制。
+
+九栏不等于九镜。镜头数、生成段数和时间长度仍按剧情决定。正文中的动作、运镜、对白与限制全部中文；平台实际附件标签、原文件名和代码字段保留在正文外的上传说明中。用户明确指定其他格式时优先尊重用户。
+
+- [空白提示词模板（文本）](assets/提示词模板/完整视频提示词模板.txt)：供编写时填写，默认不把空白版当最终成果。
+- [完整多镜示例：雨夜开球](examples/工作台示例/完整视频提示词.txt) 与 [完整单镜示例：檐下递灯](examples/中文提示词示例/檐下递灯.txt)。
+- [固定格式与来源说明](references/中文固定模板规范.md)：官方能力边界、社区方法及中文交付规则。
+- [结构检查器](scripts/check_prompt_template.py)：只检查结构与语言，不验证视频质量。
+
+新版工作台默认拒绝缺栏、空栏、填空残留或英文正文。用户明确要求整理旧稿或自定格式时，才在该片段清单中添加 `"prompt_format": "自由格式"`。旧清单未填此字段时按新版中文固定模板检查；这项兼容选项不等于内容已验收。
+
 ## 工作流程
 
 **故事与参考 → 镜头设计 → 按需生成独立图 → 连续性检查 → 视频提示词编排 → TXT / HTML 交付**
@@ -179,7 +196,7 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 需要发布作品时，可以在已确认的故事板基础上继续要求：
 
 ```text
-根据这组已经确认的镜头，给出片名候选、英文名和一句故事介绍。
+根据这组已经确认的镜头，给出中文片名候选和一句故事介绍。
 再设计一张 3:4 竖版主题海报，主视觉来自故事里的核心关系。
 准确的片名与小字通过排版叠加，不要直接把分镜简单拼贴成海报。
 ```
@@ -238,6 +255,9 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 | [视频运镜协议](references/video-motion-protocol.md) | 输入帧角色、主体动作、相机路径与切镜 |
 | [视频提示词示例](references/video-prompt-examples.md) | 按需参考的单镜表达片段，不能替代完整正文 |
 | [提示词写作方法](references/prompt-writing.md) | 完整正文、参考职责、动作与相机编排 |
+| [中文固定模板规范](references/中文固定模板规范.md) | 九栏完整正文、来源与默认交付门槛 |
+| [空白中文提示词模板](assets/提示词模板/完整视频提示词模板.txt) | 编写用填空版，最终交付必须填完 |
+| [中文提示词检查器](scripts/check_prompt_template.py) | 检查缺栏、空栏、占位符与英文残留 |
 | [导演与连续性](references/director-workflow.md) | 空间、首尾状态、轴线与声音 |
 | [Seedance 2.5 入口](references/seedance-25-profile.md) | 按实际网页/API 核对能力，不虚构参数 |
 | [研究来源](references/research-notes.md) | 社区案例方法、来源及证据边界 |
@@ -289,21 +309,7 @@ Skill 帮助组织视觉判断和模型工具。好的剧本与好的画面共�
 
 反馈可提交到 [Issues](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/issues)，附上题材、所用工具、出错镜号和希望保留的内容。公开示例请使用已获准分享的素材，并清理私人资料与图片元数据。
 
-当前仓库未附加许可证。本次发行版为 [v3.2.1](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.1)；历史发行版仍保留，主分支文档可继续更新。FANTASY logo 用于本项目品牌识别，不代表授权第三方商标使用或品牌背书。
-
-## English overview
-
-**Cinema DNA turns a subject, short story or reference into cinematic stills with deliberate camera placement, visible action and continuity.**
-
-Choose one frame, a three-shot triptych, or a nine-shot story. Generate each shot independently, review character and spatial continuity, replace only failed shots, then compose the finished frames externally. The core workflow targets approximately 2.39:1 frames; the repository name uses 21:9 as its widescreen label.
-
-The Skill provides shot design, prompts and orchestration. Image generation depends on the tools available in the host environment. Prompt-only requests stay text-only. Titles, posters and cover systems are added only when requested. Version 3.2.0 merges the independent V3 workflow into the existing skill: complete video prompts, story-driven segment planning, explicit reference responsibilities, motivated camera paths, continuity and audio. Seedance 2.5 is the primary adaptation target, not a required paid backend. It preserves reference styles and recognizable manifested characters. File deliveries use TXT and an offline copy-ready HTML workspace with language-appropriate folders. Actual video generation requires a separate explicit request and a supported backend; ungenerated motion is not reported as verified.
-
-The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. The supplied nine-shot compositor uses PowerShell and `System.Drawing`; Windows is the recommended execution environment.
-
-Version 3.2.1 adds the reusable HTML template, the owner's original FANTASY logo, a ready-to-open local demo and a Chinese TXT usage guide. The generator embeds the logo; keep the task's image, prompt and video files together when sharing. Editing TXT requires rebuilding the HTML snapshot.
-
-Start with [SKILL.md](SKILL.md), the [nine-shot protocol](references/nine-shot-story-protocol-v3.md), or the [current download](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/archive/refs/heads/main.zip).
+当前仓库未附加许可证。本次发行版为 [v3.2.2](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.2)；历史发行版仍保留，主分支文档可继续更新。FANTASY logo 用于本项目品牌识别，不代表授权第三方商标使用或品牌背书。
 
 ---
 

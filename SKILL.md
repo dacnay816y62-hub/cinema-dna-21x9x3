@@ -2,7 +2,7 @@
 name: cinema-dna-21x9x3
 description: 将故事或人物、场景资产转译为电影感单帧、三联或九镜分镜，并将图片与剧情组织为完整中文视频提示词，重点适配 Seedance 2.5。用于电影静帧、连续故事板、资产空间还原、专业运镜和图文提示词 HTML 交付；只要提示词时不自动生成媒体。
 metadata:
-  version: "3.2.1"
+  version: "3.2.2"
 ---
 
 # CINEMA DNA 3.2｜电影感分镜与专业视频提示词
@@ -18,6 +18,8 @@ metadata:
 处理顺序：用户给定的剧情与资产事实 → 连续性和空间可行性 → 镜头与动作 → 审美。下列协议优先于旧风格参考中的固定节拍、构图配额、参考图隔离和媒介限制。
 
 ## 1. 先确定交付，不自动扩大任务
+
+**视频提示词默认使用[全中文固定模板](assets/提示词模板/完整视频提示词模板.txt)，按[模板规范](references/中文固定模板规范.md)填完九栏交付，不等待用户再次索要。标题、正文与运镜词均用中文，不附英文翻译；不能只给导演表、空白模板或网页外壳。只要静帧时不强制加视频任务。**
 
 | 意图 | 交付 |
 |---|---|
@@ -105,7 +107,7 @@ metadata:
 
 真人基底按需使用，不全堆叠：
 
-> standalone live-action film still, practical location, natural skin texture, soft highlight roll-off, restrained production design, subtle uneven grain
+> 独立真人电影静帧，真实场地，自然皮肤纹理，高光柔和过渡，克制的场景设计，细微且不均匀的胶片颗粒。
 
 不要把静帧负面词、角色长描述或“焦段标签”原封不动搬到图生视频。焦段文字表达意图，不证明后端精确执行了光学参数。
 
@@ -115,7 +117,7 @@ metadata:
 
 从剧情主动选择单镜连续、多镜剪辑、逐镜独立或已有视频延长；信息足够时直接决定合理分段，不把“拆两段还是三段”作为必问选择题。需保留逐镜返修能力时可逐镜交付；同一事件可按节拍成组，但逐一标明覆盖镜号、切点和连续状态，不机械三等分。
 
-每段正文独立完整：实际参考职责、时长与片段模式、起始状态、人物动作、相机路径及落幅、必要的光影/媒介/声音。默认中文，不用“其他同上”、未绑定的图片编号或内部检查表替代正文。短单镜可以简短，复杂片段以完整表达为准，不把字数长短当作质量。
+每段正文独立完整，使用[中文固定模板规范](references/中文固定模板规范.md)的九栏：片段任务、素材绑定、场景与起始状态、分镜时间轴、摄影机与焦点、表演与物理反馈、光线与画风、声音与台词、结束状态与限制。先读规范和填空模板，再填写全部实际内容；不保留填空说明，不用“其他同上”、未绑定的图片编号或内部检查表替代正文。短单镜可以每栏一句，不把字数长短当作质量。用户明确指定其他格式时尊重其格式，不静默删掉信息。
 
 相机位移、摇摄、变焦和移焦分别表达；复合运动有明确先后与空间依据。首帧、中间状态、尾态和身份参考职责不能混用。图像、原始视频的实际内容优先于旧提示词；素材排序改变后同步更新全部绑定。
 
@@ -156,6 +158,7 @@ metadata:
 - 资产、换角度、比例、空间轴：[asset-space-protocol.md](references/asset-space-protocol.md)。
 - 视频提示词/视频：[video-motion-protocol.md](references/video-motion-protocol.md)。
 - 完整正文写法：[prompt-writing.md](references/prompt-writing.md)；只有需要简短单镜补充时再读 [video-prompt-examples.md](references/video-prompt-examples.md)。
+- 固定中文正文与默认交付：[中文固定模板规范](references/中文固定模板规范.md)、[填空模板](assets/提示词模板/完整视频提示词模板.txt)；文件输出前运行 [正文结构检查](scripts/check_prompt_template.py)。
 - 视频参考职责与导演卡：[director-workflow.md](references/director-workflow.md)。
 - Seedance 2.5 入口与参数边界：[seedance-25-profile.md](references/seedance-25-profile.md)。
 - 社区方法出处：[research-notes.md](references/research-notes.md)，只在需要研究来源时读取。

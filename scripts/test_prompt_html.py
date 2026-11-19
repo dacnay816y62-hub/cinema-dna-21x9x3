@@ -14,7 +14,7 @@ class WorkspaceTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         (self.root / "完整提示词.txt").write_text('人物向左走。\n保留 <原画风> & "服装"。\n</pre><script>bad()</script>', encoding="utf-8")
         (self.root / "分镜 #1.png").write_bytes(b"test fixture, not visual evidence")
-        self.plan = {"title": "山寺 <借伞>", "segments": [{"id": "S01", "title": "交接", "prompt_file": "完整提示词.txt", "images": [{"path": "分镜 #1.png", "role": "尾态：已松手"}]}]}
+        self.plan = {"title": "山寺 <借伞>", "segments": [{"id": "S01", "title": "交接", "prompt_format": "自由格式", "prompt_file": "完整提示词.txt", "images": [{"path": "分镜 #1.png", "role": "尾态：已松手"}]}]}
 
     def tearDown(self):
         self.temp.cleanup()
@@ -63,6 +63,14 @@ class WorkspaceTests(unittest.TestCase):
         for plan in [[], {}, {"title": "test", "segments": []}]:
             with self.assertRaises(ValueError):
                 render(plan, self.root, self.root)
+
+    def test_default_rejects_incomplete_body_before_writing_output(self):
+        del self.plan['segments'][0]['prompt_format']
+        manifest = self.root / '交付清单.json'
+        manifest.write_text(json.dumps(self.plan, ensure_ascii=False), encoding='utf-8')
+        with self.assertRaises(ValueError):
+            build(manifest)
+        self.assertFalse((self.root / '分镜与提示词.html').exists())
 
     def test_text_only_and_no_overwrite(self):
         self.plan['segments'][0]['images'] = []

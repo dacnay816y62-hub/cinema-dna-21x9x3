@@ -27,6 +27,10 @@
 
 ## 结构化账本与检查器
 
+3.2.2 的 `scripts/test_prompt_template.py` 检查两个已填示例及缺栏、空栏、占位符、英文字母、显式自由格式等反例；`scripts/test_prompt_html.py` 验证默认不完整正文会阻止建页。这些测试不衡量模型的剧情还原能力。
+
+人工另查：只要静帧不强加视频；九栏不扩成九镜；每段独立完整；时间连续并覆盖总时长；台词在时间轴与声音栏归属一致且不重复。模板来源应区分字节官方、平台教程与社区案例；只读到文字时不得标记成片已验收。
+
 可选 JSON：`duration`、`shot_count`、`mode`（edited/single_take/independent）、`reference_ids`、`initial_state`、`required_facts`、`shots`。镜头含 `id/start/end/source_facts/refs/pre/post/changes/transition/camera`。物件状态键如 `lamp.holder`、`lamp.count`；变化项含 `key/from/to/event`。最后一镜 `transition=end`。
 
 `scripts/check_plan.py 账本.json` 验证声明的时段覆盖、数量、引用、来源覆盖、前后状态和有事件的变化；不推断“event”文字真假，不证明反打合法、身体比例正确或提示词正文与账本相符。结构化检查通过后仍须人工核对正文与资产。

@@ -1,6 +1,6 @@
 # 单镜写法补充｜3.2
 
-仅在需要简短单镜写法时读取。以下保留历史英文片段作动作与相机表达参考，不是本次完整交付正文、效果保证、后端参数表或固定九镜模板。实际交付默认用用户语言，并依照 [prompt-writing.md](prompt-writing.md) 补齐本段真实参考职责、时长与模式、必要媒介/声音和首尾状态；不让用户自行拼接。使用前核对输入图真实可见的角色、状态和机位。
+仅在需要简短单镜写法时读取。以下中文片段只展示动作与相机的局部表达，不是完整交付正文、效果保证、后端参数表或固定九镜模板。实际交付必须按 [中文固定模板规范](中文固定模板规范.md) 填完九栏，补齐真实参考职责、时长与模式、媒介、声音和首尾状态；不让用户自行拼接。使用前核对输入图真实可见的角色、状态和机位。
 
 ## 示例一：原三联扩九镜《山寺借伞》
 
@@ -22,57 +22,57 @@
 | 08 | 离开：走上桥 | 两人共伞在桥头→向右走上桥 | 近侧平行跟拍，保持距离与脚点可读 | 约 5 秒；保持行进方向切 09 |
 | 09 | 离开：空间收束 | 两人共伞沿桥远去，B 仍持 U1 | 固定侧后方低位远景，自然景深 | 约 6 秒；人物变小，停留结束 |
 
-### Shot 01 — 固定建立
+### 镜头 01 — 固定建立
 
-> Locked wide shot. The two travelers settle to a stop in the mist outside the mountain temple. The traveler on the left holds a single closed umbrella at their side. The traveler on the right looks toward them. Thin mist drifts between the tree and the stone path. The camera remains still.
+> 固定远景。两个旅人在山寺外的薄雾中停步。左侧旅人手持唯一一把闭合的伞，伞垂在身侧；右侧旅人望向对方。薄雾从古树与石路之间缓慢漂过，摄影机始终不动。
 
 验收：人数、距离、唯一伞与下一镜视线一致。固定机位不等于雾和人物冻结。
 
-### Shot 02 — 反应，而非夸张表演
+### 镜头 02 — 反应，而非夸张表演
 
-> Locked medium close-up. The traveler gently raises their gaze toward the other traveler off-screen to the left. Their expression remains restrained, with a brief pause of recognition. Fine rain falls beyond the eaves. Focus stays on the eyes.
+> 固定中近景。旅人轻轻抬眼，看向画外左侧的另一人，认出似曾相识的面容后短暂停顿，神情克制。檐外落着细雨，焦点始终停在眼睛上。
 
 验收：视线指向已建立对象，没有擅加惊恐、眼泪或大幅转身。
 
-### Shot 03 — 接近与轻微横移
+### 镜头 03 — 接近与轻微横移
 
-> The traveler on the right takes two measured steps toward the traveler holding the closed umbrella and stops within arm's reach. The camera tracks gently left along the front of the eaves, keeping both travelers and the stone path in view, then settles as the traveler stops. Their feet follow the stone path. The umbrella stays in its original holder's hand.
+> 右侧旅人沿石路从容走近持伞者，走约两步后停在一臂可达的位置。摄影机沿屋檐前侧轻微向左横移，两人和脚下石路保持可见，待人物停步后相机也停住。闭合伞始终留在原持有人手里。
 
 验收：真实接近、脚点连续；不是人物瞬移或场景缩短。步数是设计意图，不是已保证控制。
 
-### Shot 04 — 交接起势
+### 镜头 04 — 交接起势
 
-> Locked medium two-shot. The traveler on the left slowly extends the single closed umbrella toward the traveler on the right. The recipient reaches for its handle, ending with their hand just touching it while the giver still supports the umbrella. Both travelers' hands remain visible. Their movements are small and unhurried.
+> 固定双人中景。左侧旅人将唯一的闭合伞缓慢递向右侧旅人；接收者伸手，镜末刚触及伞柄，原持有人仍托住伞。两人的手始终可见，动作幅度小而不急。
 
 验收：结尾仍是同一把伞的共同接触阶段，不提前完全交付。
 
-### Shot 05 — 从动作中点继续
+### 镜头 05 — 从动作中点继续
 
-> Locked medium close-up. The traveler on the right secures the closed umbrella handle. The traveler on the left releases it and gently withdraws an empty hand. Both hands and the single umbrella remain visible throughout the handover. The camera remains still as the recipient settles the umbrella in their hand.
+> 固定关系近景。右侧旅人握稳闭合的伞柄，左侧旅人才松手并缓缓收回空手。双方手部与同一把伞在交接中始终可见。接收者握持稳定后短暂停顿，摄影机不动。
 
 验收：原持有人空手；不先把伞收回重演第 04 镜。
 
-### Shot 06 — 上摇不是机位上升
+### 镜头 06 — 上摇不是机位上升
 
-> The traveler on the right opens the umbrella once and lifts it overhead. From a fixed position, the camera tilts gently upward to follow the rising canopy, finishing with both travelers' faces and the umbrella handle visible. The recipient continues holding the same umbrella. Rain gathers along its rim.
+> 右侧旅人将伞打开一次，举到头顶。摄影机原地缓慢上摇跟随伞面，结束时两人的脸和伞柄都可见。机位不升高，接收者继续握住同一把伞，雨水沿伞缘聚集。
 
 验收：伞只开一次；机位未升到屋顶；手、伞柄与伞面连接稳定。
 
-### Shot 07 — 人物动，相机不动
+### 镜头 07 — 人物动，相机不动
 
-> Locked medium two-shot. The traveler on the left takes a small step beneath the open umbrella held by the traveler on the right. The holder makes room with a slight shift of the arm. They pause beside each other under the same canopy and exchange a restrained glance. The camera remains still.
+> 固定双人中景。左侧旅人迈小步进入右侧旅人撑开的伞下，持伞者轻移手臂为对方留出位置。两人在同一伞面下并肩停住，克制地对望，摄影机不动。
 
 验收：靠近来自人物走位，不是无故推近或新增第二把伞。
 
-### Shot 08 — 同侧跟拍
+### 镜头 08 — 同侧跟拍
 
-> The two travelers walk together onto the stone bridge from left to right beneath the same open umbrella. The traveler on the right continues holding its handle. The camera tracks parallel from the near side at walking speed, maintaining a steady distance. Their feet remain in contact with the bridge surface. Thin mist drifts below the bridge.
+> 两人共撑同一把伞，从左向右走上石桥，右侧旅人继续握伞。摄影机在桥的近侧，以步行速度平行跟拍，保持稳定距离。脚步真实落在桥面，薄雾在桥下漂动。
 
 验收：有合乎几何的背景视差、脚步和位移；桥不变形，跟拍不穿栏杆。
 
-### Shot 09 — 人物走远，不必自动拉远
+### 镜头 09 — 人物走远，不必自动拉远
 
-> Locked low wide shot from the near side behind the travelers. The pair continue diagonally away along the stone bridge beneath their shared umbrella, maintaining the established direction of travel. Their figures gradually become smaller against the mist and mountain rocks. The camera stays in place while the stream flows below.
+> 近侧后方的固定低位远景。两人共伞沿石桥斜向远处走去，保持上一镜已建立的行进方向。人物在薄雾和山石间逐渐变小，摄影机始终留在原处，桥下溪流不断。
 
 验收：缩小来自人物离开，不是相机升成航拍或身体比例变形。新角度需先核对真实桥形和路线。
 
@@ -82,7 +82,7 @@
 
 导演卡：人物已坐在窗边；从中景向中近景缓慢接近，固定拍向；人物只把视线从窗移向桌面；焦点保持面部。机位路径必须在已知房间内。
 
-> The camera makes a slow, short dolly toward the seated woman, ending in a medium close-up. She remains seated in the same place and lowers her gaze from the window to the table. Focus stays on her face. The window frame and table maintain their positions in the room as the perspective changes naturally.
+> 摄影机缓慢向坐着的女子靠近一小段距离，停在中近景。她始终坐在原位，将视线从窗外落到桌面，焦点保持在面部。窗框和桌子在房间中的真实位置不变，随着机位移动产生自然透视变化。
 
 验收：相机位移有合理视差，不由人物站起前移或无故变大替代。不要同时要求所有物件屏幕像素位置完全不变。
 
@@ -90,7 +90,7 @@
 
 导演卡：前景一把钥匙，后景男人；两者都已存在于首帧。焦点从钥匙转向男人；男人抬眼。若后景主体根本不在输入画面内，应先修首帧，不要求拉焦“生成他”。
 
-> Locked composition with the key in the foreground and the man already visible behind it. Focus shifts gently from the key to the man's face as he lifts his eyes. The key stays on the table and the man stays in his chair. The camera remains still.
+> 固定构图，钥匙在前景，男子已在后景可见。男子抬眼时，焦点缓慢从钥匙移到他的面部。钥匙留在桌上，男子留在椅子里，摄影机始终不动。
 
 验收：虚实交换，机位不移动，道具不消失，人不被搬到前景。
 
@@ -98,7 +98,7 @@
 
 导演卡：输入只有浴室正面图；母亲与孩子互动是已确认事件。摄影机在原可见侧做短距离移动，终点仍只显露已知墙面，不自动反拍。动作、遮挡和参考中原有结构优先于“环绕展示”。
 
-> The camera makes a short, gentle lateral move within the visible front side of the bathroom, ending on the mother's interaction with the children. The mother brings her foam-covered hands together once while the children watch, all remaining in their established places. The window remains behind the bathtub, with the shower area and vanity preserving their established arrangement. The movement settles before revealing the unseen side of the room.
+> 摄影机在浴室已知的正面一侧轻微横移，落幅于母亲与孩子的互动。母亲将沾着泡沫的双手合拢一次，孩子看着她，所有人保持既有位置。窗户仍在浴缸后方，淋浴区与洗手台保持原布局；摄影机在显露未知房间背面前停下。
 
 验收：固定产品结构与人物比例稳定。若用户明确要求 180° 环绕，不能静默用本例替代；先标明缺背面依据并请求补视图或允许空间扩展。
 
@@ -106,6 +106,6 @@
 
 原剧情明确要求影子迟滞时，才允许影子与人物不完全同步。导演卡分现实动作、影子动作、先后与落点；优先固定机位，让异常有可见比较。
 
-> Locked medium shot with the man's face and his shadow both visible on the red wall. He turns his head toward the doorway and comes to a stop. His shadow briefly holds the earlier pose, then follows the same turn and settles. The overhead light and the room remain steady.
+> 固定中景，男子的脸与红墙上的影子同时可见。他朝门口转头并停住，影子短暂保留转头前的姿态，再跟随完成相同转动并停下。头顶灯光和房间保持稳定。
 
 验收：检查连续帧中的先后，不能靠一张影子错位截图证明“慢半拍”。具体延迟时长是待验证的设计值；不能承诺文字即可精确控制。

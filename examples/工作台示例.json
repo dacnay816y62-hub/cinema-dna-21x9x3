@@ -8,6 +8,7 @@
       "mode": "多镜剪辑",
       "duration": "计划12秒，按实际入口调整",
       "prompt_file": "工作台示例/完整视频提示词.txt",
+      "prompt_format": "中文固定模板",
       "images": [
         {
           "path": "american-football-optical-pressure-triptych.jpg",

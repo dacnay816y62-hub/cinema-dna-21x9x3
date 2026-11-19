@@ -9,6 +9,7 @@ import json
 import os
 from pathlib import Path, PureWindowsPath
 from urllib.parse import quote
+from check_prompt_template import validate_prompt, FIXED_FORMAT
 
 
 def text(value):
@@ -55,8 +56,7 @@ def render(plan, base, output_dir):
         if prompt_file.suffix.lower() != ".txt":
             raise ValueError("prompt_file must point to a UTF-8 TXT file")
         prompt = prompt_file.read_text(encoding="utf-8-sig")
-        if not prompt.strip():
-            raise ValueError("Prompt text must not be empty")
+        validate_prompt(prompt, segment.get("prompt_format", FIXED_FORMAT))
         images = segment.get("images", [])
         if not isinstance(images, list):
             raise ValueError("images must be a list")
@@ -81,7 +81,7 @@ def render(plan, base, output_dir):
         cards.append(f'''<article id="segment-{index}">
 <header><p class="eyebrow">{text(sid)}</p><h2>{text(title)}</h2><p>{text(meta)}</p><p class="status">{text(status)}</p></header>
 {media}
-<div class="prompt-head"><h3>完整视频提示词</h3><div class="actions"><button type="button" data-copy="prompt-{index}" aria-describedby="copy-status-{index}">复制完整提示词</button><a class="download" href="{relative_url(prompt_file, output_dir)}" download="{text(prompt_file.name)}">下载 TXT</a></div></div>
+<div class="prompt-head"><h3>完整视频提示词</h3><div class="actions"><button type="button" data-copy="prompt-{index}" aria-describedby="copy-status-{index}">复制完整提示词</button><a class="download" href="{relative_url(prompt_file, output_dir)}" download="{text(prompt_file.name)}">下载提示词文本</a></div></div>
 <pre id="prompt-{index}" tabindex="0">{text(prompt)}</pre><p id="copy-status-{index}" class="copy-status" role="status" aria-live="polite"></p>
 </article>''')
     return load_template().replace("<!--TITLE-->", text(plan["title"])).replace("<!--NAV-->", "".join(navigation)).replace("<!--CONTENT-->", "".join(cards))
