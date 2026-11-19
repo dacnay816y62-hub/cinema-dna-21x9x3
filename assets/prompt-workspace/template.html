@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title><!--TITLE--> · 分镜与提示词</title>
+<!-- Layout source. Build with scripts/build_prompt_html.py; examples/分镜与提示词.html is the ready-to-open demo. -->
+<style>
+:root{color-scheme:dark;--bg:#0c1010;--card:#151b1a;--line:#35413d;--ink:#eef4ef;--muted:#afbbb5;--accent:#c7df9d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Microsoft YaHei","PingFang SC",sans-serif}main{max-width:1400px;margin:auto;padding:32px 32px 48px}
+h1,h2,h3,p{overflow-wrap:anywhere;text-wrap:pretty}h1{font-size:clamp(28px,4vw,46px);line-height:1.25;font-weight:550;margin:18px 0 12px}h2{font-size:28px;line-height:1.4;margin:0;font-weight:550}h3{margin:0;font-size:20px;font-weight:550}p{margin:10px 0}
+.masthead{display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:18px}.edition{font-size:12px;letter-spacing:.12em;color:var(--muted);text-align:right}
+/* Original square logo, displayed through a proportional window; the source pixels are unchanged. */
+.brand-mark{position:relative;display:block;flex:none;width:172px;height:42px;overflow:hidden;background:#000}.brand-mark img{position:absolute;left:-34px;top:-99px;width:240px;height:240px;max-width:none;object-fit:contain}
+.eyebrow{color:var(--accent);letter-spacing:.08em;margin:0}.intro{max-width:850px}.muted,figcaption,.copy-status{color:var(--muted)}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 28px}a{color:var(--accent);text-underline-offset:4px;overflow-wrap:anywhere}nav a,.download,button{border:1px solid var(--line);padding:10px 15px;border-radius:6px;text-decoration:none;min-height:44px}nav a:hover,.download:hover{border-color:var(--accent)}
+article{border:1px solid var(--line);padding:24px;margin-bottom:28px;background:var(--card);scroll-margin-top:16px}.status{font-size:14px;color:var(--muted)}
+.frames{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin:20px 0}figure{margin:0;min-width:0;border:1px solid var(--line);border-radius:6px;overflow:hidden}figure a{display:block}figure img{display:block;width:100%;height:250px;object-fit:contain;background:#080a0a}figcaption{font-size:14px;padding:12px 14px;overflow-wrap:anywhere}figcaption strong{color:var(--ink);font-weight:500}
+video{display:block;width:100%;max-height:560px;background:#000}.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:26px}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}button{cursor:pointer;background:var(--accent);color:#18200b;font:inherit;font-weight:550}button:hover{filter:brightness(1.06)}button:active{transform:translateY(1px)}button:disabled{opacity:.6;cursor:wait}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.9;padding:22px;background:#0b100e;border:1px solid var(--line);margin:16px 0 0;tab-size:2}.copy-status{min-height:1.7em;margin-bottom:0;font-size:14px}
+.usage{border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:24px 0;padding:12px 0;color:var(--muted);font-size:14px}.usage summary{cursor:pointer;color:var(--ink);padding:5px 0}.usage ol{padding-left:22px}.usage li{margin:8px 0}.usage code{color:var(--accent)}
+footer{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:18px}footer p{margin:0}.signature{color:var(--ink);letter-spacing:.08em}
+@media(max-width:560px){main{padding:20px 12px}article{padding:16px}pre{padding:14px}.actions{width:100%}button,.download{font-size:14px}figure img{height:auto;max-height:420px}.edition{font-size:10px;letter-spacing:.04em}.brand-mark{width:144px;height:36px}.brand-mark img{width:202px;height:202px;left:-29px;top:-83px}h2{font-size:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}button:active{transform:none}}
+@media print{body{background:white;color:black}nav,.actions,.copy-status,.usage,video{display:none}main{padding:0}article,pre{background:white;color:black;border-color:#bbb}figure{break-inside:avoid}.muted,figcaption,.status,footer{color:#444}}
+</style>
+</head>
+<body><main>
+<header class="masthead">
+  <span class="brand-mark"><img src="<!--LOGO_DATA-->" alt="FANTASY" width="1280" height="1280"></span>
+  <span class="edition">CINEMA DNA 3.2.1<br>STORYBOARD × VIDEO PROMPTS</span>
+</header>
+<h1><!--TITLE--></h1>
+<p class="muted intro">看分镜，明确参考用途，再复制完整视频提示词。把动作、运镜与镜头间的衔接放在同一个工作台。</p>
+<details class="usage">
+  <summary>使用方法 · 从分镜到视频提示词</summary>
+  <ol>
+    <li>按段号查看分镜图和参考用途。确认它是首帧、尾态、人物身份、空间还是画风参考；点击图片可查看原图。</li>
+    <li>按正文约定的顺序向所选平台上传独立图片。三联或九宫格只是总览时，不把它直接当作单镜首帧。工作台不会替你完成附件绑定。</li>
+    <li>点击“复制完整提示词”，把整段正文粘贴到视频平台；时长、画幅和模型设置按实际入口核对。也可以下载原始 TXT。</li>
+    <li>需要改稿时修改任务目录的 TXT 和交付清单，再请 Codex 重新运行生成器；网页不是在线编辑器。</li>
+    <li>分享时保留整个任务文件夹。Logo 已内嵌；分镜图片、TXT 和已有视频仍使用相对路径。</li>
+  </ol>
+  <p>此网页不联网调用模型、不自动提交或购买视频。提示词已整理不代表视频已验收。</p>
+</details>
+<nav aria-label="段落导航"><!--NAV--></nav>
+<!--CONTENT-->
+<footer><p class="signature">FANTASY / CINEMA DNA</p><p>分镜 · 参考职责 · 完整正文<br>提示词检查与视频验收是不同状态。</p></footer>
+</main>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(button){
+  button.addEventListener('click',async function(){
+    var pre=document.getElementById(button.dataset.copy);
+    var message=document.getElementById(button.getAttribute('aria-describedby'));
+    var value=pre.textContent;
+    var copied=false;
+    button.disabled=true;
+    message.textContent='正在复制…';
+    try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(value);copied=true}}catch(error){}
+    if(!copied){
+      var field=document.createElement('textarea');field.value=value;field.style.position='fixed';field.style.left='-10000px';document.body.appendChild(field);field.focus();field.select();
+      try{copied=document.execCommand('copy')}catch(error){}
+      field.remove();
+    }
+    button.disabled=false;button.focus();
+    if(copied){message.textContent='已复制完整提示词'}else{
+      var range=document.createRange();range.selectNodeContents(pre);var selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);pre.focus();message.textContent='浏览器限制了复制，已选中正文，请手动复制。';
+    }
+  });
+});
+</script>
+</body></html>

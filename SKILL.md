@@ -2,7 +2,7 @@
 name: cinema-dna-21x9x3
 description: 将故事或人物、场景资产转译为电影感单帧、三联或九镜分镜，并将图片与剧情组织为完整中文视频提示词，重点适配 Seedance 2.5。用于电影静帧、连续故事板、资产空间还原、专业运镜和图文提示词 HTML 交付；只要提示词时不自动生成媒体。
 metadata:
-  version: "3.2.0"
+  version: "3.2.1"
 ---
 
 # CINEMA DNA 3.2｜电影感分镜与专业视频提示词
@@ -166,3 +166,5 @@ metadata:
 只要图：交付图和必要核验说明。只要提示词：按已选片段组织交付完整正文，不自动调用媒体后端。图加提示词：明确镜号、图像路径、帧角色、对应提示和未验证项。不要默认读取示例图库或追加海报。
 
 文件交付默认使用可直接复制的完整 TXT 提示词，目录语言跟随用户；中文项目用中文目录。图像加提示词的文件包默认提供分镜、参考职责与正文对应的 HTML 工作台，使用 [交付规范](references/delivery-contract.md) 与 [build_prompt_html.py](scripts/build_prompt_html.py)。用户只要聊天文本或 TXT 时不追加网页；不用 MD 文件替代其明确要求的格式。
+
+工作台沿用随包 [HTML 模板](assets/prompt-workspace/template.html) 和 FANTASY 原版 logo，不为同一功能临时重写另一个页面。示例见 [可打开的工作台](examples/分镜与提示词.html)，调用与改稿方法见 [中文使用说明](工作台使用说明.txt)。保留脚本与 assets 的相对位置；生成器内嵌 logo，但图片、TXT 与视频仍需随任务目录一起分享。用户明确指定其他品牌或版式时遵从其要求。

@@ -1,10 +1,11 @@
 """File and escaping regressions; browser behavior is checked separately."""
 import copy
+import base64
 import json
 import tempfile
 import unittest
 from pathlib import Path
-from build_prompt_html import build, render
+from build_prompt_html import build, render, LOGO_PATH, TEMPLATE_PATH
 
 
 class WorkspaceTests(unittest.TestCase):
@@ -34,6 +35,25 @@ class WorkspaceTests(unittest.TestCase):
                 plan['segments'][0]['prompt_file'] = name
                 with self.assertRaises(ValueError):
                     render(plan, self.root, self.root)
+
+    def test_template_and_original_brand_asset_are_embedded(self):
+        page = render(self.plan, self.root, self.root)
+        self.assertTrue(TEMPLATE_PATH.is_file())
+        logo = base64.b64encode(LOGO_PATH.read_bytes()).decode('ascii')
+        self.assertIn('src="data:image/png;base64,' + logo + '"', page)
+        self.assertIn('alt="FANTASY"', page)
+        for marker in ['<!--TITLE-->', '<!--NAV-->', '<!--CONTENT-->', '<!--LOGO_DATA-->']:
+            self.assertNotIn(marker, page)
+        self.assertNotIn(str(LOGO_PATH), page)
+
+    def test_demo_rebuild_uses_same_source_and_relative_assets(self):
+        root = Path(__file__).resolve().parents[1] / 'examples'
+        plan = json.loads((root / '工作台示例.json').read_text(encoding='utf-8'))
+        actual = render(plan, root, root)
+        shipped = (root / '分镜与提示词.html').read_text(encoding='utf-8')
+        self.assertEqual(actual, shipped)
+        self.assertIn('american-football-optical-pressure-triptych.jpg', actual)
+        self.assertNotIn('<video ', actual)
 
     def test_reject_duplicates_and_invalid_structure(self):
         plan = copy.deepcopy(self.plan)

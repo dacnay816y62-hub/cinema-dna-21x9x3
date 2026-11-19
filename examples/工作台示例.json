@@ -1,0 +1,20 @@
+{
+  "title": "雨夜开球 · 分镜与视频提示词",
+  "segments": [
+    {
+      "id": "P01",
+      "title": "从场边等待到准备开球",
+      "shot_ids": ["01", "02", "03"],
+      "mode": "多镜剪辑",
+      "duration": "计划12秒，按实际入口调整",
+      "prompt_file": "工作台示例/完整视频提示词.txt",
+      "images": [
+        {
+          "path": "american-football-optical-pressure-triptych.jpg",
+          "role": "三联分镜总览：场边背影、头盔主观、面部近景。仅用于查看镜头关系；不是三张独立附件，也不作为单镜首帧。"
+        }
+      ],
+      "status": "工作台使用示例；提示词为本次编写的演示文本，未生成对应视频"
+    }
+  ]
+}

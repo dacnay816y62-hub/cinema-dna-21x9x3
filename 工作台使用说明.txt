@@ -1,0 +1,74 @@
+FANTASY × CINEMA DNA 3.2.1
+分镜与视频提示词 HTML 工作台使用说明
+
+一、直接让 Codex 做，不需要自己写代码
+
+把下面这段话与自己的分镜图片、剧情一起发给 Codex：
+
+使用 cinema-dna-21x9x3 的分镜提示词工作台模板，把我的分镜图与完整视频提示词对应整理成 HTML。按剧情判断合理分段，写清段号、覆盖镜号、参考图职责、计划时长与片段模式。保留 FANTASY logo，生成中文文件夹、完整 TXT 和可离线打开、可复制提示词的 HTML。使用技能内 scripts/build_prompt_html.py 和 assets/prompt-workspace/template.html，不另外重写网页。只整理文件，不提交或购买视频；完成后实际检查复制、下载与图片加载。
+
+如果还没有安装 Skill，可以先发：
+帮我从 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3 安装或更新电影感 Skill，并使用里面的 FANTASY 分镜提示词 HTML 工作台。
+
+二、先看现成示例
+
+1. 下载 GitHub Release 的 ZIP 并完整解压，不要只保存 GitHub 显示的网页源码。
+2. 双击 examples/分镜与提示词.html。浏览示例不需要 Python、不需要登录、不需要 API 密钥。
+3. 页面上方是原版 FANTASY logo；下方依次是段号与镜号、分镜图片与参考职责、完整视频提示词、复制按钮与 TXT 下载。
+4. 这是一份可运行的使用示例，不是声称已经生成的视频。示例分镜复用仓库已有三联图，不包含新的私人素材。
+
+三、自己准备项目并生成
+
+需要 Python 3.9 或以上版本。生成器只用标准库，无额外安装包。
+在一个中文任务目录中放好：
+
+  我的故事/
+    交付清单.json
+    分镜图/镜头01.png
+    分镜图/镜头02.png
+    段落01/完整视频提示词.txt
+
+交付清单的字段示例见 examples/工作台示例.json；详细字段说明见 references/delivery-contract.md。
+所有素材路径都相对交付清单所在目录，且必须位于该目录以内。不接受远程 URL、绝对盘符或 ../ 越界路径。
+每个片段必须有唯一 id 和 prompt_file；images 可以是空数组。有真实视频文件时才填 video。
+把示例替换为自己的镜号、素材文件名、参考职责和完整正文，不能只改标题。
+
+在 Skill 文件夹中运行：
+python scripts/build_prompt_html.py "我的故事/交付清单.json"
+
+可直接验证随包示例：
+python scripts/build_prompt_html.py "examples/工作台示例.json" --output "examples/工作台重建预览.html"
+
+默认生成到交付清单同目录，文件名为“分镜与提示词.html”。已有文件不会被静默覆盖。
+确认需要重建时使用：
+python scripts/build_prompt_html.py "我的故事/交付清单.json" --force
+
+另存为一个新文件使用：
+python scripts/build_prompt_html.py "我的故事/交付清单.json" --output "我的故事/分镜与提示词_新版.html"
+
+四、模板和 Logo 在哪里
+
+scripts/build_prompt_html.py：生成器，读取清单、分镜和 TXT。
+assets/prompt-workspace/template.html：维护 HTML、样式和复制行为的模板源码。
+assets/fantasy-brand/fantasy-logo.png：品牌所有者提供的原始 Logo，不是字体重写或 AI 重绘。
+assets/fantasy-brand/brand-spec.md：品牌资产与显示规则。
+examples/分镜与提示词.html：已生成的可打开示例；不要将模板源码误当最终交付页。
+
+模板中的 TITLE、NAV、CONTENT、LOGO_DATA 注释标记由脚本填入，不要删除。
+脚本把 Logo 原图内嵌到生成的 HTML；不会引用维护者电脑上的路径。
+请保留 scripts 与 assets 的相对位置，不要只拷贝一个 Python 文件后运行。
+
+五、实际使用
+
+1. 先检查参考用途：首帧、尾态、人物、空间和画风不是同一件事。
+2. 按正文约定顺序上传独立分镜图。三联/九宫格只是总览时，不要直接当单镜首帧。
+3. 点击“复制完整提示词”，到所选视频平台粘贴；再核对真实附件绑定、模型、时长、画幅和音频设置。
+4. 如果浏览器拦截复制，页面会选中正文并提示手动复制；也可以下载 TXT。
+5. 修改 TXT 或清单后需要重新运行脚本。网页里的正文是生成当时的快照，不会实时同步外部 TXT。
+
+六、分享与隐私
+
+Logo 已内嵌，但分镜、TXT 和视频仍是相对路径引用，因此分享时要发送完整任务文件夹。
+没有视频时不会显示假播放器。离线页不调用模型，不自动生成、付费、上传或提交任何内容。
+发布前自行确认图片、提示词和视频的公开权限；不要把客户素材、密钥或私人路径提交到公共仓库。
+FANTASY logo 是本项目品牌识别，不代表向第三方授权商标使用或品牌背书。

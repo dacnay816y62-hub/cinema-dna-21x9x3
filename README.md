@@ -1,6 +1,6 @@
 # CINEMA DNA
 
-**版本：3.2.0**
+**版本：3.2.1**
 
 ### 电影感分镜 × 专业视频提示词 × HTML 工作台
 
@@ -25,6 +25,8 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 **Skill 负责镜头与叙事设计、提示词和生成编排；图像模型负责逐镜生成；拼版工具负责组合已有镜头。** 它依赖所在环境实际提供的图像能力，本身不附带模型、API 密钥或视频生成服务。
 
 ## 3.2 更新重点
+
+**3.2.1 模板补全：** 工作台 HTML 模板与生成脚本一同提供，加入 FANTASY 原版 logo、可打开示例及中文使用说明。无需自己搭页面，下载解压后即可查看。
 
 **这次，连“怎么拍”一起交付。** 3.2.0 将此前独立 V3 的视频提示词工作流合并回原 Skill，安装名和仓库地址不变，保留 3.1.1 的单帧、三联、九镜、画风与空间能力。
 
@@ -117,6 +119,16 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 页面不依赖 CDN，附 TXT 下载；本地浏览器限制剪贴板时会提供可手动选择的正文。工作台本身不是视频模型，也不包含自动付费提交。已有真实视频才显示播放器。
 
 维护者可用 `python scripts/build_prompt_html.py 任务目录/交付清单.json` 从已有分镜与 TXT 生成工作台；清单格式与路径规则见[交付规范](references/delivery-contract.md)。
+
+**下载与示例：** [最新版 Release](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/latest) · [中文使用教程 TXT](工作台使用说明.txt) · [工作台示例文件](examples/分镜与提示词.html) · [HTML 模板源码](assets/prompt-workspace/template.html) · [示例数据清单](examples/工作台示例.json)。GitHub 文件页展示的是源码；下载并完整解压 ZIP 后，双击 `examples/分镜与提示词.html` 才是实际工作台。
+
+可以直接对 Codex 说：
+
+```text
+使用 cinema-dna-21x9x3 的分镜提示词工作台模板，把我的分镜图与完整视频提示词对应整理成 HTML。按剧情合理分段，写清参考用途、镜号、动作与运镜。保留 FANTASY logo，交付中文文件夹、TXT 和可复制提示词的 HTML；使用技能自带模板与脚本，不另外重写网页，也不要提交或购买视频。
+```
+
+工作台示例复用仓库已有的三联图，正文为使用演示，不代表对应视频已经生成。生成器内嵌 logo，图片、TXT 和视频仍保持相对路径；分享时请发送完整任务目录。修改 TXT 后需要重建 HTML。
 
 ## 工作流程
 
@@ -231,6 +243,10 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 | [研究来源](references/research-notes.md) | 社区案例方法、来源及证据边界 |
 | [交付规范](references/delivery-contract.md) | 中文目录、完整 TXT 与可复制 HTML |
 | [HTML 生成器](scripts/build_prompt_html.py) | 将本地分镜与 TXT 组织成离线工作台 |
+| [HTML 模板](assets/prompt-workspace/template.html) | 深色分镜与提示词布局、复制交互与使用提示 |
+| [工作台使用说明](工作台使用说明.txt) | 直接发给 Codex 的口令、手动运行、改稿及分享方法 |
+| [可打开示例](examples/分镜与提示词.html) | 下载完整仓库后双击查看 |
+| [FANTASY 品牌资产](assets/fantasy-brand/brand-spec.md) | 用户授权发布的原版 logo 与显示规则 |
 | [状态检查器](scripts/check_plan.py) | 声明的时间、引用和状态链检查，不验证画面 |
 | [人工回归用例](tests/regression-cases.txt) | 更新后需检查的行为边界，不是已完成性能测试 |
 | [九镜故事协议](references/nine-shot-story-protocol-v3.md) | 故事推进、连续性、镜头变化与逐镜恢复 |
@@ -273,7 +289,7 @@ Skill 帮助组织视觉判断和模型工具。好的剧本与好的画面共�
 
 反馈可提交到 [Issues](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/issues)，附上题材、所用工具、出错镜号和希望保留的内容。公开示例请使用已获准分享的素材，并清理私人资料与图片元数据。
 
-当前仓库未附加许可证。本次发行版为 [v3.2.0](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.0)；历史发行版仍保留，主分支文档可继续更新。
+当前仓库未附加许可证。本次发行版为 [v3.2.1](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.1)；历史发行版仍保留，主分支文档可继续更新。FANTASY logo 用于本项目品牌识别，不代表授权第三方商标使用或品牌背书。
 
 ## English overview
 
@@ -284,6 +300,8 @@ Choose one frame, a three-shot triptych, or a nine-shot story. Generate each sho
 The Skill provides shot design, prompts and orchestration. Image generation depends on the tools available in the host environment. Prompt-only requests stay text-only. Titles, posters and cover systems are added only when requested. Version 3.2.0 merges the independent V3 workflow into the existing skill: complete video prompts, story-driven segment planning, explicit reference responsibilities, motivated camera paths, continuity and audio. Seedance 2.5 is the primary adaptation target, not a required paid backend. It preserves reference styles and recognizable manifested characters. File deliveries use TXT and an offline copy-ready HTML workspace with language-appropriate folders. Actual video generation requires a separate explicit request and a supported backend; ungenerated motion is not reported as verified.
 
 The six gallery examples are existing triptychs, not nine-shot benchmarks or a guarantee of reproducibility. The supplied nine-shot compositor uses PowerShell and `System.Drawing`; Windows is the recommended execution environment.
+
+Version 3.2.1 adds the reusable HTML template, the owner's original FANTASY logo, a ready-to-open local demo and a Chinese TXT usage guide. The generator embeds the logo; keep the task's image, prompt and video files together when sharing. Editing TXT requires rebuilding the HTML snapshot.
 
 Start with [SKILL.md](SKILL.md), the [nine-shot protocol](references/nine-shot-story-protocol-v3.md), or the [current download](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/archive/refs/heads/main.zip).
 

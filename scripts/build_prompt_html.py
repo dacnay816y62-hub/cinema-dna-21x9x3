@@ -3,6 +3,7 @@
 No generation, network calls, third-party dependencies or automatic video approval.
 """
 import argparse
+import base64
 import html
 import json
 import os
@@ -83,17 +84,20 @@ def render(plan, base, output_dir):
 <div class="prompt-head"><h3>完整视频提示词</h3><div class="actions"><button type="button" data-copy="prompt-{index}" aria-describedby="copy-status-{index}">复制完整提示词</button><a class="download" href="{relative_url(prompt_file, output_dir)}" download="{text(prompt_file.name)}">下载 TXT</a></div></div>
 <pre id="prompt-{index}" tabindex="0">{text(prompt)}</pre><p id="copy-status-{index}" class="copy-status" role="status" aria-live="polite"></p>
 </article>''')
-    return TEMPLATE.replace("<!--TITLE-->", text(plan["title"])).replace("<!--NAV-->", "".join(navigation)).replace("<!--CONTENT-->", "".join(cards))
+    return load_template().replace("<!--TITLE-->", text(plan["title"])).replace("<!--NAV-->", "".join(navigation)).replace("<!--CONTENT-->", "".join(cards))
 
 
-TEMPLATE = '''<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><!--TITLE--> · 分镜与提示词</title>
-<style>
-:root{color-scheme:dark;--bg:#0c1010;--card:#151b1a;--line:#35413d;--ink:#eef4ef;--muted:#afbbb5;--accent:#d6f264}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,"Microsoft YaHei",sans-serif}main{max-width:1260px;margin:auto;padding:36px 24px}h1{font-size:clamp(28px,4vw,48px);line-height:1.2;margin:12px 0}h2{font-size:28px;margin:0}h3{margin:0;font-size:20px}.eyebrow{color:var(--accent);letter-spacing:.06em;margin:0}.muted,figcaption,.copy-status{color:var(--muted)}nav{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}a{color:var(--accent);text-underline-offset:4px;overflow-wrap:anywhere}nav a,.download,button{border:1px solid var(--line);padding:8px 14px;border-radius:6px;text-decoration:none}article{border:1px solid var(--line);padding:24px;margin-bottom:28px;background:var(--card);scroll-margin-top:16px}.status{font-size:14px;color:var(--muted)}.frames{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:16px;margin:20px 0}figure{margin:0;min-width:0}img{display:block;width:100%;height:200px;object-fit:contain;background:#080a0a}figcaption{font-size:14px;padding:8px 0;overflow-wrap:anywhere}video{display:block;width:100%;max-height:560px;background:#000}.prompt-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:26px}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}button{cursor:pointer;background:var(--accent);color:#18200b;font:inherit;font-weight:650}button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:3px}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;line-height:1.8;padding:20px;background:#0b100e;border:1px solid var(--line);margin:16px 0 0;tab-size:2}footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}@media(max-width:560px){main{padding:22px 12px}article{padding:16px}pre{padding:14px}.actions{width:100%}button,.download{font-size:14px}img{height:auto;max-height:360px}}
-</style></head><body><main><p class="eyebrow">CINEMA DNA 3.2 · 图文工作台</p><h1><!--TITLE--></h1><p class="muted">查看分镜与参考职责，复制整段提示词，再按实际入口上传素材。此网页不会自动生成或提交视频。</p><nav aria-label="段落导航"><!--NAV--></nav><!--CONTENT--><footer>随整个任务目录保存与分享，保留图片和 TXT 的相对位置。提示词检查与视频验收是不同状态。</footer></main>
-<script>
-document.querySelectorAll('[data-copy]').forEach(function(button){button.addEventListener('click',async function(){var pre=document.getElementById(button.dataset.copy);var message=document.getElementById(button.getAttribute('aria-describedby'));var value=pre.textContent;var copied=false;try{if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(value);copied=true}}catch(error){}if(!copied){var field=document.createElement('textarea');field.value=value;field.style.position='fixed';field.style.left='-10000px';document.body.appendChild(field);field.focus();field.select();try{copied=document.execCommand('copy')}catch(error){}field.remove();button.focus()}if(copied){message.textContent='已复制完整提示词'}else{var range=document.createRange();range.selectNodeContents(pre);var selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);pre.focus();message.textContent='浏览器限制了复制，已选中正文，请手动复制。'}})});
-</script></body></html>'''
+TEMPLATE_PATH = Path(__file__).resolve().parents[1] / "assets" / "prompt-workspace" / "template.html"
+LOGO_PATH = Path(__file__).resolve().parents[1] / "assets" / "fantasy-brand" / "fantasy-logo.png"
+
+
+def load_template():
+    template = TEMPLATE_PATH.read_text(encoding="utf-8")
+    tokens = ("<!--TITLE-->", "<!--NAV-->", "<!--CONTENT-->", "<!--LOGO_DATA-->")
+    if any(token not in template for token in tokens):
+        raise ValueError("Workspace template is missing required placeholders")
+    logo = base64.b64encode(LOGO_PATH.read_bytes()).decode("ascii")
+    return template.replace("<!--LOGO_DATA-->", "data:image/png;base64," + logo)
 
 
 def build(manifest, output=None, force=False):
