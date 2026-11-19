@@ -69,5 +69,18 @@ document.querySelectorAll('[data-copy]').forEach(function(button){
     }
   });
 });
+document.querySelectorAll('a.download').forEach(function(link){
+  link.addEventListener('click',function(event){
+    var pre=link.closest('article').querySelector('pre');
+    if(!pre || typeof Blob==='undefined' || !URL.createObjectURL)return;
+    event.preventDefault();
+    var blob=new Blob([pre.textContent],{type:'text/plain;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var download=document.createElement('a');
+    download.href=url;download.download=link.getAttribute('download') || '完整视频提示词.txt';
+    document.body.appendChild(download);download.click();download.remove();
+    setTimeout(function(){URL.revokeObjectURL(url)},1000);
+  });
+});
 </script>
 </body></html>

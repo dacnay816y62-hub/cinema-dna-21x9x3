@@ -27,6 +27,7 @@ class WorkspaceTests(unittest.TestCase):
         self.assertNotIn(str(self.root), page)
         self.assertNotIn('<video ', page)
         self.assertIn('download="完整提示词.txt"', page)
+        self.assertIn("new Blob([pre.textContent]", page)
 
     def test_reject_missing_remote_absolute_and_traversal(self):
         for name in ['../private.txt', 'https://example.com/key.txt', 'C:\\private.txt', '/private.txt', 'missing.txt']:
