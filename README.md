@@ -1,5 +1,8 @@
 # CINEMA DNA
 
+> **即梦版已提供：** [下载即梦技能 ZIP](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/jimeng-v1.0.0/cinema-dna-21x9x3-jimeng-v1.0.0.zip) · [查看即梦版说明](jimeng/README.md)。上传即梦请使用此专用 ZIP；原版技能继续保留。
+
+
 **版本：3.2.2**
 
 ### 电影感分镜 × 专业视频提示词 × HTML 工作台

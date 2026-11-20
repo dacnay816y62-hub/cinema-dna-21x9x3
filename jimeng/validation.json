@@ -1,0 +1,17 @@
+{
+  "name": "影视工业级宽银幕分镜",
+  "status": "通过",
+  "files": 4,
+  "compressed_bytes": 8770,
+  "expanded_bytes": 14638,
+  "max_folder_depth": 1,
+  "relative_links_verified": 3,
+  "name_characters": 10,
+  "description_characters": 98,
+  "sha256": "23465dd4d4edd4d61baab8b6c5f2d7762493b3badac876935c686fffa00d3cfd",
+  "archive": "cinema-dna-21x9x3-jimeng-v1.0.0.zip",
+  "extracted_byte_match": true,
+  "basis": "用户提供的《满血版即梦 Skill 创建说明》",
+  "platform_upload_tested": false,
+  "media_generation_tested": false
+}
