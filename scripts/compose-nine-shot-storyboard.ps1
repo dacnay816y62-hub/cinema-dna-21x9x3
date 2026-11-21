@@ -1,6 +1,6 @@
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [Parameter(Mandatory = $true)]
-    [ValidateCount(9, 9)]
     [string[]]$Sources,
 
     [Parameter(Mandatory = $true)]
@@ -17,10 +17,18 @@ param(
     [int]$CellHeight = 402,
 
     [ValidateRange(0, 64)]
-    [int]$Gap = 8
+    [int]$Gap = 8,
+
+    # Optional explicit interpreter; also opts into Pillow on Windows.
+    [string]$PythonExecutable,
+
+    # Native shells pass separate file arguments, not a PowerShell array.
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [string[]]$AdditionalSources
 )
 
 $ErrorActionPreference = 'Stop'
+$Sources = @($Sources) + @($AdditionalSources | Where-Object { $null -ne $_ })
 
 if ($Sources.Count -ne 9) {
     throw "Exactly 9 source images are required; received $($Sources.Count)."
@@ -30,6 +38,35 @@ foreach ($source in $Sources) {
     if (-not (Test-Path -LiteralPath $source -PathType Leaf)) {
         throw "Missing source image: $source"
     }
+}
+
+# Keep the existing Windows backend dependency-free. On macOS/Linux, dispatch
+# before loading or executing any System.Drawing code (.NET 6+ is Windows-only).
+if ($env:OS -ne 'Windows_NT' -or $PythonExecutable) {
+    if (-not $PythonExecutable) {
+        foreach ($candidate in @('python3', 'python')) {
+            $command = Get-Command $candidate -CommandType Application -ErrorAction SilentlyContinue |
+                Select-Object -First 1
+            if ($command) {
+                $PythonExecutable = $command.Source
+                break
+            }
+        }
+    }
+    if (-not $PythonExecutable) {
+        throw 'Python 3.9+ is required on macOS/Linux. See references/九镜拼版使用说明.md.'
+    }
+    $backend = Join-Path $PSScriptRoot 'compose_nine_shot_storyboard.py'
+    $pythonArgs = @($backend, '--sources') + $Sources + @(
+        '--output-dir', $OutputDir, '--prefix', $Prefix,
+        '--cell-width', "$CellWidth", '--cell-height', "$CellHeight", '--gap', "$Gap"
+    )
+    $json = & $PythonExecutable @pythonArgs
+    if ($LASTEXITCODE -ne 0) {
+        throw "Storyboard composition failed (exit $LASTEXITCODE). See the Python error above."
+    }
+    $json | ConvertFrom-Json
+    return
 }
 
 Add-Type -AssemblyName System.Drawing

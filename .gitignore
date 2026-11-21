@@ -16,3 +16,4 @@ examples/*.png
 /upload/
 __pycache__/
 *.pyc
+.venv-storyboard/

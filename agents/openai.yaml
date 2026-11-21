@@ -1,5 +1,5 @@
 interface:
-  display_name: "电影感 3.2.2 — 分镜与中文提示词"
+  display_name: "电影感 3.2.3 — 分镜与中文提示词"
   icon_large: "./assets/fantasy-brand/fantasy-logo.png"
   short_description: "保留原画风与连续分镜，按固定九栏交付完整中文视频提示词及可复制网页工作台"
   default_prompt: "使用 $cinema-dna-21x9x3，保留我的剧情与参考画风，按剧情拆段并填写固定九栏的全中文视频提示词；需要文件时交付完整文本与可复制网页，不自动生成媒体。"

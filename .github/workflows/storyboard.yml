@@ -1,0 +1,55 @@
+name: 九镜拼版跨平台回归
+
+on:
+  push:
+    branches: [main, 'codex/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            python: '3.13'
+          - os: macos-15-intel
+            python: '3.13'
+          - os: ubuntu-latest
+            python: '3.9'
+            pillow: 'Pillow==10.4.0'
+          - os: windows-latest
+            python: '3.13'
+    env:
+      PYTHONUTF8: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: 安装拼版依赖
+        shell: pwsh
+        env:
+          PINNED_PILLOW: ${{ matrix.pillow }}
+        run: |
+          if ($env:PINNED_PILLOW) {
+            python -m pip install $env:PINNED_PILLOW
+          } else {
+            python -m pip install -r scripts/requirements-storyboard.txt
+          }
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: 记录实际平台并运行全部回归
+        shell: pwsh
+        run: |
+          python -c "import platform; print(platform.platform(), platform.machine())"
+          $PSVersionTable
+          python -m unittest discover -s scripts -p 'test_*.py' -v
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

@@ -3,7 +3,7 @@
 > **即梦版已提供：** [下载即梦技能 ZIP](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/jimeng-v1.0.0/cinema-dna-21x9x3-jimeng-v1.0.0.zip) · [查看即梦版说明](jimeng/README.md)。上传即梦请使用此专用 ZIP；原版技能继续保留。
 
 
-**版本：3.2.2**
+**版本：3.2.3**
 
 ### 电影感分镜 × 专业视频提示词 × HTML 工作台
 
@@ -40,6 +40,8 @@ Cinema DNA 把这个判断落实到可执行的镜头设计：人物正在做什
 **Skill 负责镜头与叙事设计、提示词和生成编排；图像模型负责逐镜生成；拼版工具负责组合已有镜头。** 它依赖所在环境实际提供的图像能力，本身不附带模型、API 密钥或视频生成服务。
 
 ## 3.2 更新重点
+
+**3.2.3 跨平台修复：** 九镜拼版新增 Python + Pillow 后端，macOS / Linux 不再依赖 Windows 专用图像组件；保留原 PowerShell 入口、Windows 免新增依赖路径与 9 张单图 + 3 张三联 + 1 张总览的交付方式。附[中文运行说明](references/九镜拼版使用说明.md)与多系统自动回归，修复 [问题 #2](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/issues/2)。
 
 **3.2.2 中文正文固定：** 不仅有网页模板，也固定每段完整提示词的九个栏目。默认交付填好的中文正文，附单镜与多镜示例；工作台生成时检查缺栏、空栏、填空残留和英文字母。结合字节官方文档、Higgsfield 社区与用户提供的 LibTV 项目方法，分开记录来源与实际视频验收。
 
@@ -255,7 +257,7 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 ### 运行环境
 
 - **生成图像：** 使用所在环境实际提供、或用户指定的图像工具；没有可用后端时交付镜头方案与提示词，并说明未生成图片。
-- **九镜拼版：** 仓库附带的脚本基于 PowerShell 与 `System.Drawing`，建议在 Windows 环境执行。其他环境可使用可用的等效拼版工具，保持顺序、比例和独立源图。
+- **九镜拼版：** macOS / Linux 推荐 Python 3.9+ 与 Pillow；原 PowerShell 入口会自动选择跨平台后端。Windows 继续支持原生 PowerShell 拼版，不强制安装 Python。依赖安装、参数与完整命令见[九镜拼版使用说明](references/九镜拼版使用说明.md)。
 - **HTML 与状态检查脚本：** Python 3.9+，仅使用标准库，无 API 密钥或第三方依赖；网页文件与关联素材应一起移动。
 - **仅要提示词：** 不需要图像生成服务，明确说“只要提示词，不出图”即可。
 
@@ -287,7 +289,9 @@ git clone --depth 1 https://github.com/dacnay816y62-hub/cinema-dna-21x9x3.git "$
 | [九镜故事协议](references/nine-shot-story-protocol-v3.md) | 故事推进、连续性、镜头变化与逐镜恢复 |
 | [摄影质感与节奏](references/cinema-dna-v4-anti-ai.md) | 光学质感、细节控制与三联节奏 |
 | [单帧与三联方法库](references/cinema-dna-full-spec.md) | 焦段、构图、光线与题材参考；冲突时以核心规则为准 |
-| [九镜拼版脚本](scripts/compose-nine-shot-storyboard.ps1) | 组织 9 张源图、3 张三联图和 1 张总览 |
+| [跨平台九镜拼版](scripts/compose_nine_shot_storyboard.py) | Python + Pillow，支持 macOS / Linux / Windows |
+| [PowerShell 拼版入口](scripts/compose-nine-shot-storyboard.ps1) | 保留旧参数；非 Windows 自动交给 Python |
+| [九镜拼版使用说明](references/九镜拼版使用说明.md) | 安装依赖、完整命令、尺寸规则与排错 |
 | [调用配置](agents/openai.yaml) | 技能展示名称与默认调用示例 |
 
 ## 常见问题
@@ -324,7 +328,7 @@ Skill 帮助组织视觉判断和模型工具。好的剧本与好的画面共�
 
 反馈可提交到 [Issues](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/issues)，附上题材、所用工具、出错镜号和希望保留的内容。公开示例请使用已获准分享的素材，并清理私人资料与图片元数据。
 
-当前仓库未附加许可证。本次发行版为 [v3.2.2](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.2)；历史发行版仍保留，主分支文档可继续更新。FANTASY logo 用于本项目品牌识别，不代表授权第三方商标使用或品牌背书。
+当前仓库未附加许可证。本次发行版为 [v3.2.3](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/tag/v3.2.3)；历史发行版仍保留，主分支文档可继续更新。FANTASY logo 用于本项目品牌识别，不代表授权第三方商标使用或品牌背书。
 
 ---
 

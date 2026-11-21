@@ -2,7 +2,7 @@
 name: cinema-dna-21x9x3
 description: 将故事或人物、场景资产转译为电影感单帧、三联或九镜分镜，并将图片与剧情组织为完整中文视频提示词，重点适配 Seedance 2.5。用于电影静帧、连续故事板、资产空间还原、专业运镜和图文提示词 HTML 交付；只要提示词时不自动生成媒体。
 metadata:
-  version: "3.2.2"
+  version: "3.2.3"
 ---
 
 # CINEMA DNA 3.2｜电影感分镜与专业视频提示词
@@ -133,9 +133,9 @@ metadata:
 
 遇到安全拦截先检查请求是否允许；不要通过隐去核心事实绕过限制。只有原请求本身允许且替代表达仍忠实时才尝试合规改写；需要改变核心剧情就说明并询问。
 
-九镜拼版使用现有 [compose-nine-shot-storyboard.ps1](scripts/compose-nine-shot-storyboard.ps1)，先核对参数与目标比例。保留 9 张源图、3 张纵向三联和 1 张接触表；默认黑色小间隔、无附加文字、无拉伸。输出到用户规定目录，没有规定则用任务专用目录。
+九镜拼版前读取[跨平台使用说明](references/九镜拼版使用说明.md)。macOS / Linux 优先用 [Python 拼版脚本](scripts/compose_nine_shot_storyboard.py)（Python 3.9+ 与 Pillow）；原 [PowerShell 入口](scripts/compose-nine-shot-storyboard.ps1) 在非 Windows 自动转交 Python，Windows 保留原后端。先核对依赖、参数与目标比例，不在 macOS / Linux 调用 System.Drawing。
 
-附带脚本使用 PowerShell 与 System.Drawing，优先在 Windows 执行；其他环境使用可用的等效工具完成同样拼版，不更换已成功的源图。
+保留 9 张独立镜头、3 张纵向三联和 1 张接触表；默认黑色小间隔、无附加文字、无拉伸。输出到用户规定目录，没有规定则用任务专用目录。缺少依赖时明确报告，或在允许安装依赖的任务内使用虚拟环境；不要重生成已成功的源图来绕过拼版错误。HTML 与提示词检查脚本仍仅用 Python 标准库，不要求 Pillow。
 
 ## 9. 验收：先事实，后美术
 
