@@ -23,6 +23,8 @@ jobs:
           - os: macos-15-intel
             python: '3.13'
           - os: ubuntu-latest
+            python: '3.13'
+          - os: ubuntu-22.04
             python: '3.9'
             pillow: 'Pillow==10.4.0'
           - os: windows-latest

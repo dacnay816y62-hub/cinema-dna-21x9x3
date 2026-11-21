@@ -29,7 +29,9 @@ def local_file(base, value):
 
 
 def relative_url(path, output_dir):
-    return quote(Path(os.path.relpath(path, output_dir)).as_posix(), safe="/")
+    # macOS /var is commonly a symlink to /private/var. Normalize both ends
+    # before relativizing so a shared page never leaks the local source path.
+    return quote(Path(os.path.relpath(Path(path).resolve(), Path(output_dir).resolve())).as_posix(), safe="/")
 
 
 def render(plan, base, output_dir):

@@ -5,7 +5,7 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
-from build_prompt_html import build, render, LOGO_PATH, TEMPLATE_PATH
+from build_prompt_html import build, render, relative_url, LOGO_PATH, TEMPLATE_PATH
 
 
 class WorkspaceTests(unittest.TestCase):
@@ -36,6 +36,15 @@ class WorkspaceTests(unittest.TestCase):
                 plan['segments'][0]['prompt_file'] = name
                 with self.assertRaises(ValueError):
                     render(plan, self.root, self.root)
+
+    def test_relative_media_resolves_symlinked_output_directory(self):
+        alias = self.root / '目录别名'
+        try:
+            alias.symlink_to(self.root, target_is_directory=True)
+        except (OSError, NotImplementedError):
+            self.skipTest('当前环境不允许创建目录符号链接')
+        self.assertEqual(relative_url(self.root / '分镜 #1.png', alias),
+                         relative_url(self.root / '分镜 #1.png', self.root))
 
     def test_template_and_original_brand_asset_are_embedded(self):
         page = render(self.plan, self.root, self.root)
