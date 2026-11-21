@@ -1,6 +1,6 @@
 # CINEMA DNA
 
-> **即梦版已提供：** [下载即梦技能 ZIP](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/jimeng-v1.0.0/cinema-dna-21x9x3-jimeng-v1.0.0.zip) · [查看即梦版说明](jimeng/README.md)。上传即梦请使用此专用 ZIP；原版技能继续保留。
+> **即梦版已提供：** [下载即梦技能 ZIP](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/jimeng-v1.0.0/cinema-dna-21x9x3-jimeng-v1.0.0.zip) · [查看即梦版说明](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/blob/main/jimeng/README.md)。上传即梦请使用此专用 ZIP；原版技能继续保留。
 
 
 **版本：3.2.3**
@@ -21,9 +21,9 @@
 
 剧情雏形 → 人物三视图 → 统一赛车 → 两版九镜分镜 → 实际视频片段。由 **FANTASY / 梵想美学** 创作与整理，附带原版标志的 HTML 案例页、6 页图文讲解和完整素材下载。
 
-[![赛车短片实战案例：统一赛车与人物后的九镜分镜](cases/赛车短片实战案例/预览/2917.jpg)](cases/赛车短片实战案例/README.md)
+[![赛车短片实战案例：统一赛车与人物后的九镜分镜](https://raw.githubusercontent.com/dacnay816y62-hub/cinema-dna-21x9x3/main/cases/赛车短片实战案例/预览/2917.jpg)](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/blob/main/cases/赛车短片实战案例/README.md)
 
-**[查看「赛车短片实战案例」](cases/赛车短片实战案例/README.md)** · **[下载完整案例包](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/racing-case-v1.0.0/racing-short-film-case.zip)**
+**[查看「赛车短片实战案例」](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/blob/main/cases/赛车短片实战案例/README.md)** · **[下载完整案例包](https://github.com/dacnay816y62-hub/cinema-dna-21x9x3/releases/download/racing-case-v1.0.0/racing-short-film-case.zip)**
 
 原始大图与视频独立发布，不打进技能安装附件；本次案例更新不改变现有技能版本。
 
