@@ -1,0 +1,35 @@
+{
+  "visual": [
+    {"id":"cut","name":"快切","category":"剪辑衔接","summary":"直接切入下一镜，不加过渡特效；表演节奏仍按剧情，不强制加速。","conditions":"下一镜需要增加信息；核对人物位置、道具状态与动作进度。","instruction":"上一镜在指定切出点结束，下一镜直接从指定起始状态进入，不加过渡特效，不强制加快表演节奏。","execution":"组内镜头设计；精确切点建议后期调整","continuous":false,"source":"cuts"},
+    {"id":"action","name":"动作衔接","category":"剪辑衔接","summary":"在动作进行中切镜，下一镜接着完成剩余动作。","conditions":"同一动作、同一动作阶段；移动方向、用手、持物与速度必须接得上。","instruction":"在动作尚未完成时切出；下一镜承接该阶段，不重复完整起势。","execution":"生成时准备接续动作；后期对齐切点","continuous":false,"source":"match"},
+    {"id":"eyeline","name":"视线衔接","category":"剪辑衔接","summary":"先交代人物看向哪里，再展示视线所指的对象。","conditions":"明确视线方向、目标位置与高度；不能仅凭两张图自动判定空间成立。","instruction":"视线落向已指定目标后切镜，下一镜交代该目标与观察者的空间关系。","execution":"镜头设计与后期剪辑","continuous":false,"source":"axis"},
+    {"id":"graphic","name":"构图匹配","category":"剪辑衔接","summary":"用形状、构图重心或运动轨迹建立两镜之间的视觉联系。","conditions":"必须指定共同匹配点；相似构图不意味着两个物体应该变形成彼此。","instruction":"围绕指定匹配点衔接构图，明确切镜，不将两个主体形变融合。","execution":"生成时准备构图；后期对位","continuous":false,"source":"match"},
+    {"id":"reaction","name":"反应切镜","category":"剪辑衔接","summary":"从事件或说话者切到接收信息者，让反应推进情绪。","conditions":"确认反应发生在事件之后；对话方向、时间关系和画外声音要连贯。","instruction":"在指定信息发生后切到接收者，保留反应延迟与呼吸，不抢演。","execution":"镜头设计与后期剪辑","continuous":false,"source":"cuts"},
+    {"id":"insert","name":"插入细节再切回","category":"剪辑衔接","summary":"插入一镜有叙事作用的细节，再回到主动作。","conditions":"通常需要三镜结构；只有两张资产时，必须补写中间细节镜及其依据。","instruction":"主动作进入指定阶段后插入必要细节，再回到同一时间进程中的主动作。","execution":"先补镜头设计，再生成或剪辑","continuous":false,"source":"cuts"},
+    {"id":"jump","name":"跳切省略","category":"剪辑衔接","summary":"有意省略一段时间，让姿态或位置发生可感知的跳跃。","conditions":"用于时间压缩或主观节奏；不适合需要完整展示的交接与关键动作。","instruction":"明确省略的时间或过程，用有意的跳切表达，不伪装成连续动作。","execution":"后期剪辑优先","continuous":false,"source":"jump"},
+    {"id":"contrast","name":"对比突切","category":"剪辑衔接","summary":"用突然的场面、动静或声画反差形成叙事强调。","conditions":"写出对比意图；避免无动机的闪白、爆音和随机切换。","instruction":"上一镜在指定触发点突然切到形成明确反差的下一镜。","execution":"后期剪辑优先","continuous":false,"source":"cuts"},
+    {"id":"dissolve","name":"叠化","category":"光学过渡","summary":"前镜逐渐淡出，同时后镜逐渐显现。","conditions":"适合时间流逝或记忆联想；重叠时长由节奏决定，不作为两人融合的动作。","instruction":"分别准备前镜尾部与后镜头部的可用画面，后期按指定时长叠化。","execution":"后期合成优先","continuous":false,"source":"transitions"},
+    {"id":"fade","name":"淡出再淡入","category":"光学过渡","summary":"先退入黑场，再进入下一场面，形成段落间隔。","conditions":"用于段落结束或时间跨度；需要为黑场与淡入淡出留出剪辑时间。","instruction":"保留前镜收束与后镜起势，后期先淡出至黑，再按叙事节奏淡入。","execution":"后期合成优先","continuous":false,"source":"transitions"},
+    {"id":"occlusion","name":"遮挡隐藏切","category":"隐藏切口","summary":"利用真实前景遮住画面，借遮挡掩藏剪辑点。","conditions":"指定遮挡物、覆盖方向与揭开方向；两个场景不应无故空间变形。","instruction":"让已存在的遮挡物覆盖画面，在遮挡充分时隐藏切点，再从匹配方向揭开下一镜。","execution":"生成匹配遮挡段；后期隐藏拼接","continuous":false,"source":"design"},
+    {"id":"whip","name":"甩镜匹配切","category":"隐藏切口","summary":"在快速摇摄的运动模糊中衔接两镜。","conditions":"两端摇摄方向、速度感和亮度需匹配；不是让主体突然瞬移。","instruction":"前镜按指定方向快速摇离；后镜从同方向的摇摄中落稳，模糊区留给后期拼接。","execution":"生成两端运动；后期匹配","continuous":false,"source":"design"},
+    {"id":"continuous","name":"连续跟移衔接","category":"连续镜头","summary":"保持一个连续镜头，通过真实空间中的摄影机移动改变构图。","conditions":"必须存在可行路径、相容时间与连续动作；两张图不能仅因编组就视为首尾帧。","instruction":"从前一构图沿可行路径连续移动到后一构图，人物动作不中断，不插入切镜。","execution":"连续镜头生成设计；结果待视频验证","continuous":true,"source":"design"},
+    {"id":"reveal","name":"前景揭示","category":"连续镜头","summary":"摄影机越过真实前景，逐步显露同一空间中的主体。","conditions":"前景必须有素材依据；机位路径不穿墙，不凭空增加门窗或家具。","instruction":"利用场景已有前景形成遮挡，摄影机沿指定路径移动，让主体自然显露。","execution":"连续镜头生成设计；结果待视频验证","continuous":true,"source":"design"},
+    {"id":"focus","name":"焦点交接","category":"连续镜头","summary":"在同一构图内把注意力从一个景深层次转交给另一个。","conditions":"两个对象必须同时存在于同一空间与构图；焦点变化不是摄影机位移。","instruction":"保持已指定机位和构图，让焦点从前一对象平稳转移到后一对象。","execution":"连续镜头生成设计；结果待视频验证","continuous":true,"source":"design"}
+  ],
+  "audio": [
+    {"id":"sync","name":"随画面切换","summary":"声音随切点切换；必要时做短交叉淡化，避免爆音。","source":"cuts"},
+    {"id":"lead","name":"声音先入","summary":"下一场的声音先出现，随后画面进入下一场；填写声音来源和提前量。","source":"audio"},
+    {"id":"carry","name":"声音延续","summary":"画面已切到下一镜，上一镜声音仍继续；填写延续对象与结束点。","source":"audio"},
+    {"id":"ambience","name":"环境声桥","summary":"用有依据的持续环境声连接两镜；跨场景时不能误导观众以为仍在原地点。","source":"match"}
+  ],
+  "cameras": ["固定观察","克制缓推","后拉交代空间","侧向跟移","人物跟随","动机性摇摄","升降揭示","自定义路径"],
+  "sources": {
+    "cuts":{"title":"Adobe：电影剪辑切法","url":"https://www.adobe.com/creativecloud/video/post-production/cuts-in-film.html"},
+    "match":{"title":"Adobe：匹配剪辑","url":"https://www.adobe.com/creativecloud/video/discover/match-cut.html"},
+    "audio":{"title":"Adobe：声音先入与声音延续","url":"https://www.adobe.com/creativecloud/video/discover/j-cut-and-l-cut.html"},
+    "axis":{"title":"Adobe：轴线与空间连续性","url":"https://www.adobe.com/au/creativecloud/video/discover/what-is-the-180-degree-rule.html"},
+    "jump":{"title":"Adobe：跳切","url":"https://www.adobe.com/creativecloud/video/discover/jump-cut.html"},
+    "transitions":{"title":"Adobe：电影转场类型","url":"https://www.adobe.com/ph_fil/creativecloud/video/discover/types-of-film-transitions.html"},
+    "design":{"title":"本工作台的导演衔接设计；不是平台官方预设或效果保证","url":""}
+  }
+}

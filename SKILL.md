@@ -151,6 +151,8 @@ metadata:
 
 ## 10. 按需资源与交付
 
+- 用户要可编辑的分镜预演台、文件夹素材管理、同色生成组或分镜/资产混合编排时，读取 [分镜预演台交接规范](references/分镜预演台交接规范.md)，沿用 [完整交互源码](assets/storyboard-rehearsal) 和 [构建脚本](scripts/build_rehearsal_html.py)。这是独立 Beta 工具；不要用旧静态提示词页替代，也不要把演示项目或浏览器缓存当成用户已批准的内容。
+
 - 保留参考画风、校准帧与风格纠偏：[style-reference-fidelity.md](references/style-reference-fidelity.md)。
 - 文件、提示词与打包交付：[delivery-contract.md](references/delivery-contract.md)，准备交付文件时读取。
 - 多镜剧情、道具变化：[story-state-continuity.md](references/story-state-continuity.md)。

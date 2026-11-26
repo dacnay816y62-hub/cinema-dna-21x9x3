@@ -1,0 +1,182 @@
+/* FANTASY / 工作界面精修。沿用品牌，不加载第三方组件、字体或网络资源。 */
+:root{--ui-surface:#101010;--ui-raised:#171717;--ui-divider:#2b2b2b;--ui-control:#444;--ui-muted:#a0a0a0;--ui-dim:#858585;--ui-header:88px;--ui-ease:cubic-bezier(.2,.7,.2,1)}
+html{scroll-padding-top:104px;scrollbar-color:#4b4b4b #101010;scrollbar-width:thin}
+body{font-size:15px;line-height:1.65}
+::selection{background:#69372f;color:#fff}
+button,input,select,textarea{border-radius:0;font-stretch:normal}
+button{transition:background-color .16s var(--ui-ease),border-color .16s var(--ui-ease),color .16s var(--ui-ease)}
+button:hover:not(:disabled){background-color:#1d1d1d;border-color:#818181}
+button:active:not(:disabled){background-color:#292929}
+button:disabled{opacity:1;color:#777;border-color:#292929;background:#0c0c0c;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,[role=button]:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+input:not([type=checkbox]),select,textarea{border-color:#3b3b3b;background:#101010;transition:border-color .16s ease;line-height:1.65}
+input:not([type=checkbox]):hover,select:hover,textarea:hover{border-color:#626262}
+input::placeholder,textarea::placeholder{color:#858585;opacity:1}
+select{cursor:pointer}
+input[type=checkbox]{accent-color:var(--red);cursor:pointer}
+.note,.short-summary{color:var(--ui-muted);line-height:1.9;overflow-wrap:anywhere}
+.eyebrow{color:#999;font-size:11px;letter-spacing:.14em}
+.workspace{grid-template-columns:248px minmax(0,1fr) 380px;align-items:start}
+header{position:sticky;top:0;z-index:35;min-height:var(--ui-header);background:#0a0a0a;border-color:#303030;padding:16px 24px}
+.brand{gap:22px}.brand span{font-size:36px;font-weight:900;letter-spacing:0}
+.header-tools{gap:8px}.header-tools button{min-height:36px;padding:7px 12px;font-size:12px}
+#saveHtml{border-color:#686868;background:#151515}
+.workspace main{padding:28px 28px 48px}
+.intro{gap:20px;align-items:flex-start}.intro>div:first-child{min-width:0}
+h1{font-size:clamp(26px,2vw,32px);font-weight:700;letter-spacing:0;line-height:1.4}
+.project{margin-top:10px;font-size:13px;color:#a4a4a4;line-height:1.8}
+.edition{min-width:76px;font-size:11px;line-height:1.9;flex-shrink:0}
+/* 视图与编组分成两层；不添加复制、粘贴或撤销按钮。 */
+.toolbar{display:grid;gap:12px;margin:24px 0 14px;padding:14px 0;border-color:var(--ui-divider)}
+.toolbar .row{gap:8px;min-width:0}
+.toolbar-view{justify-content:space-between}.toolbar-actions{padding-top:12px;border-top:1px solid #202020}
+.view-switch{gap:0;margin:0}.view-switch button{min-height:36px;padding:6px 13px;font-size:13px;border-color:#464646}
+.view-switch button+button{border-left:0}.view-switch button.active{background:#e4e3df;border-color:#e4e3df;color:#111}
+.toolbar button,.toolbar select,.toolbar input{min-height:34px;font-size:12px;padding:6px 10px}
+.grid-control{display:flex;align-items:center;gap:8px;min-width:0}.grid-control>label{margin:0;color:#929292;font-size:11px;white-space:nowrap}
+.toolbar select{width:116px}.toolbar .assign-select{max-width:none!important;width:134px}
+#selectionCount{margin-left:auto;white-space:nowrap;font-size:12px;font-variant-numeric:tabular-nums}
+.group-row{gap:8px;min-height:40px}.group-chip{min-height:34px;padding:5px 11px;border-color:#363636;gap:8px}
+.group-chip b{font-size:15px;font-weight:600}.group-chip span{font-size:12px;color:#aaa}.group-chip i{width:7px;height:7px}
+.group-chip.active{background:#171717;border-color:var(--group)}
+.canvas-help{font-size:11px;line-height:1.85;color:#929292;padding:10px 0 20px}
+/* 原片是主角：镜号固定、不裁图、不染色，不让操作层遮住画面。 */
+.group-section{padding:20px;margin-bottom:24px;background:#0b0b0b}
+.group-heading{padding-bottom:16px;margin-bottom:18px;gap:12px}
+.group-heading .group-name{font-size:28px;letter-spacing:-.04em;font-weight:600}
+.group-heading .group-title{font-size:14px;margin-left:12px}
+.group-heading p{font-size:12px;line-height:1.8;color:#969696;margin-top:5px;overflow-wrap:anywhere}
+.group-heading button{font-size:12px;padding:6px 10px;min-height:34px;white-space:nowrap}
+.shot{border-color:#373737;background:var(--ui-surface)}
+.shothead{padding:12px 12px 0;gap:8px;flex-wrap:wrap}
+.shotid{font-size:13px;font-weight:600;white-space:nowrap;letter-spacing:.015em}
+.group-assignment{width:82px;min-height:26px;font-size:12px;padding:2px 5px;flex-shrink:0;border-color:var(--group)}
+.shotcaption{padding:8px 12px 12px;gap:8px}.shottitle{font-size:14px;line-height:1.65;font-weight:500}
+.shot-camera{width:176px}.shot-camera>span{font-size:11px;color:#989898}.shot-camera select{min-height:32px;font-size:12px;border-color:#404040}
+.shottools{padding:5px 8px;gap:4px;border-color:#2a2a2a}
+.shottools button{min-height:32px;font-size:12px;color:#a5a5a5;padding:5px 6px}
+.shottools button:hover:not(:disabled){color:#f0efeb;background:#222}
+.thumb .seq{font-size:12px;padding:3px 6px;background:#080808e6}
+.thumb .choose{width:20px;height:20px;top:8px;right:8px}
+.edge-junction{border-color:#484848;background:#111;box-shadow:0 1px 0 #0006}
+.junction-name{font-size:18px;font-weight:700}.junction-link{color:#a1a1a1;font-size:11px}
+.edge-junction.active{border-color:var(--red);background:#170f0d}
+.group-grid .edge-junction.is-wrapped{border-left:0;border-right:0;border-top:1px dashed #414141;border-bottom:1px solid #262626;background:transparent;box-shadow:none;display:flex;flex-wrap:wrap;gap:4px 14px;align-content:center;justify-content:center;padding:7px 10px}
+.group-grid .edge-junction.is-wrapped .junction-name{font-size:14px;font-weight:600}
+.group-grid .edge-junction.is-wrapped .junction-link{order:-1;line-height:1.6}
+.group-grid .edge-junction.is-wrapped.active,.group-grid .edge-junction.is-wrapped:hover{border-top-color:var(--red);color:#f0efeb;background:#13100f}
+.support-assets{padding-top:14px;border-color:#272727}.support-assets>.note{font-size:12px;color:#969696}.support-assets>.row>button{font-size:12px;min-height:32px}
+.empty{background:#0a0a0a;border-color:#292929;color:#929292}.empty button{color:#b6b6b6;min-height:36px}
+.empty .plus{font-size:26px;color:#717171}.canvas-foot{font-size:11px;line-height:1.8;color:#929292}
+/* 左侧分类退后一级，选中和用途仍可清楚识别。 */
+.asset-sidebar{top:var(--ui-header);height:calc(100dvh - var(--ui-header));background:#0d0d0d;padding:22px 14px 12px;border-color:#292929;scrollbar-width:thin}
+.library-heading{margin-bottom:16px}.library-heading h2{font-size:18px;letter-spacing:.04em}.library-heading span{font-size:12px;color:#929292}
+.library-import{gap:6px}.library-import button{min-height:36px;font-size:12px}
+.library-search{margin-bottom:14px}.library-search input{min-height:38px;font-size:12px}
+.library-tree-head{font-size:12px;color:#999}.folder-row{min-height:36px}.folder-name{min-height:32px}
+.folder-row.active{background:#1c1c1c}.folder-name small{font-size:11px;color:#999}.folder-more{min-height:30px}
+.library-location{font-size:12px}.library-title{font-size:12px;line-height:1.65;padding:8px 7px 0}
+.library-usage{font-size:11px;color:#aaa;padding:6px 7px 8px}.library-usage .unbound{color:#969696}
+.library-tip{font-size:11px;color:#929292}.library-item{border-color:#303030}.library-item:hover{border-color:#6c6c6c}
+.library-thumb input{width:16px;height:16px}.library-empty{color:#999;font-size:12px}
+#libraryProgress{font-size:11px;color:#999;line-height:1.7}#librarySelection .row{font-size:12px}
+.library-trash{position:absolute;left:5px;top:5px;width:28px;height:28px;min-height:28px;padding:5px!important;display:grid;place-items:center;background:#0b0b0be6;border:1px solid #555;color:#c7c7c7;cursor:pointer;z-index:1}
+.library-trash:hover,.library-trash:focus-visible{border-color:var(--red);color:#fff;background:#3b1814}
+.library-selection-actions{display:flex;align-items:center;gap:7px}
+#librarySelection.has-selection{border-color:#666;box-shadow:0 -12px 22px #0d0d0dd9}
+#librarySelection .library-batch-delete{display:grid;place-items:center;width:34px;height:34px;padding:7px;border:1px solid #555;color:#dedede;background:#141414}
+#librarySelection .library-batch-delete:hover,#librarySelection .library-batch-delete:focus-visible{color:#fff;border-color:var(--red);background:#3b1814}
+.delete-dialog-heading{display:flex;align-items:center;gap:9px;color:var(--red);font-size:12px;letter-spacing:.12em;margin-bottom:14px}
+.delete-description{font-size:14px;line-height:1.85;color:#bcbcbc;max-width:650px}
+.delete-description strong{display:block;color:#eee;font-weight:500}
+.delete-asset-list{list-style:none;padding:0;margin:20px 0;max-height:260px;overflow:auto;border-top:1px solid #303030;border-bottom:1px solid #303030}
+.delete-asset-list li{display:grid;grid-template-columns:56px minmax(0,1fr);align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid #262626}
+.delete-asset-list li:last-child{border-bottom:0}.delete-asset-list img{width:56px;height:44px;object-fit:contain;background:#151515}
+.delete-asset-list b{display:block;font-size:13px;font-weight:500;overflow-wrap:anywhere}.delete-asset-list small{display:block;font-size:11px;color:#999;margin-top:5px;overflow-wrap:anywhere}
+.delete-impact{font-size:13px;line-height:1.8;color:#eee}.delete-confirm{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-color:var(--red);color:#f0efeb;background:#22100e}
+.delete-confirm:hover{background:#552018;border-color:var(--red)}
+@media(pointer:coarse){.library-trash{width:44px;height:44px;min-height:44px}#librarySelection .library-batch-delete{width:44px;height:44px}.library-thumb input{width:22px;height:22px}}
+.library-bind{min-height:36px;font-size:12px}#libraryMove{min-height:34px;font-size:12px}
+/* 右侧给正文更宽的列与稳定的阅读节奏，不折叠提示词。 */
+.workspace .connection-sidebar{position:sticky;top:var(--ui-header);height:calc(100dvh - var(--ui-header));overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain;padding:0;background:#0d0d0d;border-left:1px solid #292929}
+.inspector-head{position:sticky;top:0;z-index:5;background:#0f0f0f;padding:20px 22px 16px;border-bottom:1px solid #303030}
+.inspector-head h2{font-size:18px;font-weight:600;overflow-wrap:anywhere}.inspector-head .eyebrow{font-size:11px;margin-bottom:9px}
+.inspector-head .mini{min-height:34px;font-size:12px}.inspector{padding:20px 22px 32px}
+.inspector label{font-size:12px;letter-spacing:.02em;color:#b7b7b7;line-height:1.8;margin-bottom:7px}
+.inspector select,.inspector input:not([type=checkbox]),.inspector textarea{font-size:14px;padding:10px 12px;line-height:1.8}
+.inspector .field{margin-top:22px}.inspector>.field:first-child{margin-top:0}
+.inspector h3{font-size:15px;font-weight:600}.inspector .note,.preset-description p{font-size:12px;color:#a4a4a4;line-height:1.9}
+.preset-description{padding-top:16px;margin-top:18px}.preset-description .category{font-size:11px;color:#c98276}
+.execution{font-size:11px;color:#b9a29d;border-color:#46322d;background:#15110f;line-height:1.8}
+.statebadge{font-size:11px;color:#c6a19a;border-color:#563930;background:#15100f}
+.color-picker{gap:9px}.color-choice{height:30px}.color-choice.active{outline:2px solid #e6e3dc;outline-offset:2px}
+.group-prompt-field{padding-top:20px;border-top:1px solid #333;margin-top:24px!important}
+.prompt-heading label{font-size:16px;letter-spacing:0;color:#f0efeb;font-weight:600}.prompt-heading span{font-size:11px;color:#a0a0a0}
+.prompt-status{font-size:11px;line-height:1.7;color:#aaa}
+.inspector .complete-prompt{font-size:14px;line-height:1.95;padding:16px;min-height:420px;background:#090909;max-height:none;overflow:hidden;resize:none}
+.group-prompt-field .note{font-size:11px}.inspector .pair{margin:14px 0 20px;gap:7px}.pair .caption{font-size:11px;color:#a5a5a5}
+/* 菜单、弹窗与反馈使用同一层级；保留现有键盘操作。 */
+.quick-menu{width:316px;background:#141414;border-color:#545454;padding:8px;box-shadow:0 16px 48px #000b}
+.quick-menu-head{font-size:14px;padding:9px 10px 12px}.quick-menu-head small{font-size:11px;color:#aaa}
+.quick-menu>button{font-size:13px;min-height:40px;padding:9px 10px}.quick-menu>button span{font-size:11px;color:#a2a2a2}
+.quick-menu-label{font-size:11px;color:#a7a7a7;padding:12px 10px 8px}.quick-menu>p{font-size:11px;color:#969696}
+.quick-menu button:focus-visible{outline-offset:-2px}.quick-moves button{min-height:36px}
+dialog{background:#111;border-color:#575757;padding:28px;width:min(760px,calc(100vw - 32px));box-shadow:0 28px 100px #000c}
+dialog::backdrop{background:#000b}dialog h2{font-size:22px;font-weight:600;letter-spacing:0;line-height:1.5;padding-right:36px}
+dialog .close{width:34px;height:34px;min-height:34px;padding:0;display:grid;place-items:center;font-size:22px;color:#bbb}
+dialog label{font-size:13px}dialog input,dialog select,dialog textarea{font-size:14px}dialog button{font-size:13px;min-height:36px}
+.preset-card{padding:16px;border-color:#373737}.preset-card b{font-size:15px;font-weight:600}.preset-card span{font-size:12px;color:#a0a0a0;line-height:1.8}
+.preset-card.active{border-color:var(--red);background:#1c1210}.dialog-actions{border-top:1px solid #303030;padding-top:18px;margin-top:22px;gap:8px;flex-wrap:wrap}
+.toast{background:#191919;border-color:#666;color:#f0efeb;padding:13px 20px;font-size:13px;line-height:1.75;box-shadow:0 8px 32px #000a;max-width:min(640px,calc(100vw - 32px))}
+.audit{border-color:#3e3e3e;padding-top:24px;margin-top:32px}.audit h2{font-size:19px;line-height:1.5}.audit-list{gap:10px;font-size:13px;line-height:1.8}.audit-list>div{padding-bottom:9px;border-bottom:1px solid #242424}
+.gate{gap:10px}.gate button{min-height:40px;font-size:13px}.gate .primary:not(:disabled){border-color:var(--red);background:#19100e}
+.save-status{font-size:11px;white-space:normal;text-align:right;min-width:130px}.status{font-size:12px;line-height:1.8}.footer{font-size:11px;color:#8f8f8f;gap:12px;flex-wrap:wrap}
+@container(max-width:330px){.shotcaption{grid-template-columns:1fr}.shot-camera{width:100%}.shot-camera select{min-height:32px}.shottitle{font-size:13px}}
+@media(min-width:1900px){.workspace{grid-template-columns:264px minmax(0,1fr) 420px}.workspace main{padding:32px 36px 56px}}
+@media(min-width:1001px) and (max-width:1350px){.workspace{grid-template-columns:232px minmax(0,1fr)}.workspace main{padding:24px}.workspace .connection-sidebar{grid-column:2;position:static;height:auto;overflow:visible;border-left:0;border-top:1px solid #333}.inspector-head{position:static}.inspector{max-width:900px;margin:auto;padding:22px 24px 32px}.asset-sidebar{grid-row:1/3}}
+@media(max-width:1000px){header{position:static;gap:18px;padding:16px 20px}.workspace{display:block}.brand span{font-size:32px}.workspace main{padding:24px 20px}.workspace .connection-sidebar{position:static;height:auto;overflow:visible;border-left:0;border-top:1px solid #333}.inspector-head{position:static}.inspector{max-width:800px}.asset-sidebar{top:0;height:100dvh;width:296px;padding-top:24px}.header-tools{gap:8px}#libraryBackdrop{z-index:71}.toolbar-view{gap:12px!important}}
+@media(max-width:600px){.group-heading{align-items:flex-start}.group-heading .group-title{display:block;margin:5px 0 0;font-size:13px}.group-heading .group-name{font-size:25px}.group-section{padding:14px}.grid-control{margin-left:0}.toolbar-actions{gap:8px}.toolbar-actions button{flex-grow:1}.toolbar .assign-select{width:144px}.header-tools button{min-height:40px}.brand span{font-size:28px}.brand{gap:16px}.intro{gap:12px}.edition{min-width:62px;font-size:10px}.group-grid .edge-junction.is-wrapped .junction-link{flex-basis:100%;order:2}.group-grid .edge-junction.is-wrapped .junction-name{font-size:15px}.group-grid .edge-junction.is-wrapped{gap:3px 8px}.reference-body button{min-height:38px}}
+@media(max-width:450px){header{padding:16px 14px}.brand{gap:12px}.brand span{font-size:26px;padding-left:12px}.workspace main{padding:22px 14px}.intro .eyebrow{font-size:10px}h1{font-size:24px}.project{font-size:12px}.toolbar .row{width:100%}.view-switch{width:100%}.view-switch button{min-height:42px}.grid-control{width:100%;justify-content:space-between}.grid-control select{flex:1;max-width:170px}.toolbar-actions button,.toolbar-actions select{min-height:40px}#selectionCount{width:100%;margin-left:0;font-size:12px}.group-chip{min-height:38px}.canvas-help{font-size:11px;line-height:1.9}.group-section{padding:12px}.shottools button{min-height:40px}.thumb .choose{width:22px;height:22px}.inspector-head{padding:20px 16px}.inspector{padding:20px 16px 30px}.quick-menu>button,.quick-moves button{min-height:44px}dialog{padding:22px 18px;width:calc(100vw - 24px)}dialog h2{font-size:20px}.dialog-actions button{min-height:42px}.toast{font-size:12px;padding:12px 15px;bottom:16px}.canvas-foot{flex-direction:column}.save-status{text-align:left}}
+@media(prefers-reduced-motion:reduce){button,input,select,textarea,.asset-sidebar{transition:none!important}html{scroll-behavior:auto}}
+@media(max-width:1000px){.asset-sidebar{visibility:hidden}.library-open .asset-sidebar{visibility:visible}#closeLibrary{min-height:36px;min-width:36px;font-size:22px}.asset-sidebar{overscroll-behavior:contain}}
+
+/* 素材文件夹树：真实嵌套、连续层级线、父级展开状态；不把不同层级画成平铺标签。 */
+#assetSidebar #folderTree{max-height:min(46vh,480px);padding-bottom:14px;overflow:auto}
+.folder-views{padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid #292929}
+.folder-tree-label{padding:0 6px 8px;color:#707070;font-size:10px;letter-spacing:.12em}
+.folder-tree-roots,.folder-children{list-style:none;padding:0;margin:0}
+.folder-node{position:relative;list-style:none;margin:0;padding:0}
+.folder-children{margin:1px 0 3px 12px;padding-left:17px;border-left:1px solid #383838}
+.folder-children[hidden]{display:none}
+.folder-node>.folder-row{position:relative;padding-left:0;min-height:36px;border-left:0;border-radius:3px;gap:0}
+.folder-children>.folder-node>.folder-row::before{content:'';position:absolute;left:-18px;top:18px;width:17px;height:1px;background:#383838;pointer-events:none}
+.folder-root>.folder-row{margin-top:3px}
+.folder-root>.folder-row .folder-name span{font-weight:600;color:#eee}
+.folder-row .folder-expand{width:20px;height:32px;display:grid;place-items:center;color:#a3a3a3;padding:0}
+.folder-expand svg{transition:transform .14s ease}
+.folder-expand[aria-expanded=true] svg{transform:rotate(90deg)}
+.folder-node .folder-name{gap:6px;padding:5px 3px;min-height:36px;min-width:0}
+.folder-name svg{width:17px;height:17px;stroke:#9d9d9d;fill:#9d9d9d16}
+.folder-row.is-open>.folder-name svg{stroke:#d4d4d4;fill:#d4d4d42}
+.folder-row.contains-current>.folder-name span{color:#e6e6e6}
+.folder-row.active{background:#242424;box-shadow:inset 2px 0 var(--red)}
+.folder-row.active>.folder-name svg{stroke:#efefef;fill:#efefef40}
+.folder-row.active>.folder-name span{color:#fff}
+.folder-row .folder-name span{font-size:12px;line-height:1.5}
+.folder-row .folder-name small{font:10px Consolas,monospace;color:#808080;min-width:12px;text-align:right}
+.folder-actions{display:flex;flex:none;opacity:0;pointer-events:none;transition:opacity .12s}
+.folder-row:hover>.folder-actions,.folder-row:focus-within>.folder-actions,.folder-row.active>.folder-actions{opacity:1;pointer-events:auto}
+.folder-actions .folder-add,.folder-actions .folder-more{width:19px;height:30px;min-height:30px;padding:0;color:#aaa}
+.folder-actions button:hover{color:#fff}
+.folder-virtual{padding-left:7px;min-height:36px;border-left:0;border-radius:3px}
+.folder-virtual .folder-name{padding:5px 6px;gap:8px}
+.folder-row.library-drop-target{outline:1px solid var(--red);outline-offset:-1px;background:#291716}
+.group-section.library-drop-target,.group-chip.library-drop-target,.shot.library-drop-target{position:relative;outline-color:var(--group,var(--red))!important;background:#171717!important}
+[data-library-drop-label]::after{content:attr(data-library-drop-label);position:absolute;left:16px;right:16px;bottom:16px;padding:13px 16px;border:1px solid var(--group,var(--red));background:#101010;color:#f0efeb;font-size:14px;font-weight:600;line-height:1.6;text-align:center;z-index:5;pointer-events:none;box-shadow:0 6px 22px #0009}
+.group-chip[data-library-drop-label]::after{left:0;right:auto;bottom:calc(100% + 8px);white-space:nowrap;font-size:12px;padding:8px 12px}
+#libraryLocation{display:flex;flex-wrap:wrap;align-items:center;gap:4px;line-height:1.8}
+#libraryLocation button{border:0;background:none;padding:0;min-height:24px;font-size:11px;color:#8c8c8c;text-align:left;white-space:normal;overflow-wrap:anywhere}
+#libraryLocation button:hover,#libraryLocation button[aria-current=location]{color:#e7e7e7}
+.folder-breadcrumb-separator{font-size:10px;color:#565656}
+@media(max-width:1000px){#assetSidebar #folderTree{max-height:46dvh}.folder-node>.folder-row,.folder-virtual{min-height:40px}.folder-actions{opacity:1;pointer-events:auto}.folder-actions button{min-height:36px!important}}
+@media(prefers-reduced-motion:reduce){.folder-expand svg,.folder-actions{transition:none}}

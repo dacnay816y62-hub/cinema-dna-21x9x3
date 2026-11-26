@@ -1,0 +1,25 @@
+[data-detail-image]{cursor:zoom-in}
+[data-detail-image]:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+html:has(#imageViewer[open]){overflow:hidden}
+#imageViewer{position:fixed;inset:0;width:100vw;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#080808;color:#f0efeb;overflow:hidden;box-sizing:border-box}
+#imageViewer[open]{display:flex;flex-direction:column}
+#imageViewer::backdrop{background:#000e}
+.image-viewer-bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 24px;border-bottom:1px solid #303030;background:#101010;z-index:1}
+.image-viewer-name{min-width:0}
+#imageViewerTitle{font-size:16px;line-height:1.6;font-weight:600;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#imageViewerSize{display:block;font:11px/1.6 Consolas,'Microsoft YaHei',sans-serif;color:#999;margin-top:3px}
+.image-viewer-tools{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.image-viewer-tools button{min-height:36px;padding:6px 12px;font-size:12px;line-height:1.5;background:#101010;border:1px solid #444;color:#eee;border-radius:0}
+.image-viewer-tools button[data-image-tool="in"],.image-viewer-tools button[data-image-tool="out"],.image-viewer-tools button[data-image-tool="close"]{min-width:36px;font-size:20px;padding:2px 8px}
+.image-viewer-tools button[data-image-tool="close"]{margin-left:8px;border-color:#777}
+.image-viewer-tools button:hover{background:#242424;border-color:#aaa}
+#imageViewerScale{min-width:52px;text-align:center;font:13px Consolas,monospace;color:#eee}
+.image-viewer-stage{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:none;user-select:none;cursor:default;isolation:isolate}
+.image-viewer-stage.can-pan{cursor:grab}
+.image-viewer-stage.is-panning{cursor:grabbing}
+#imageViewerPicture{position:absolute;left:0;top:0;max-width:none!important;max-height:none!important;display:block;object-fit:fill;transform-origin:0 0;will-change:transform;pointer-events:auto;user-select:none;filter:none!important;-webkit-user-drag:none}
+#imageViewerPicture[hidden]{display:none}
+#imageViewerMessage{position:absolute;inset:0;display:grid;place-items:center;padding:32px;color:#aaa;font-size:14px;pointer-events:none}
+#imageViewerMessage[hidden]{display:none}
+#imageViewerHelp{flex:none;margin:0;padding:10px 24px;border-top:1px solid #282828;color:#999;background:#101010;text-align:center;font-size:12px;line-height:1.7;user-select:none}
+@media(max-width:700px){.image-viewer-bar{padding:12px 14px;gap:10px;flex-wrap:wrap}.image-viewer-name{width:100%}#imageViewerTitle{font-size:14px}.image-viewer-tools{width:100%;gap:6px;justify-content:flex-end}.image-viewer-tools button{min-height:44px;padding:6px 10px}#imageViewerScale{min-width:45px}.image-viewer-tools button[data-image-tool="close"]{margin-left:auto}#imageViewerHelp{font-size:11px;padding:10px 8px}}
